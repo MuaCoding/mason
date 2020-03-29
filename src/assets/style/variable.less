@@ -1,0 +1,278 @@
+@primary-color: #32b642; // 全局主色
+@link-color: #32b642; // 链接色
+@warning-color: #faad14; // 警告色
+@error-color: #f5222d; // 错误色
+@font-size-base: 14px; // 主字号
+@heading-color: rgba(0, 0, 0, 0.85); // 标题色
+@text-color: rgba(0, 0, 0, 0.65); // 主文本色
+@text-color-secondary: rgba(0, 0, 0, 0.45); // 次文本色
+@disabled-color: rgba(0, 0, 0, 0.25); // 失效色
+@border-radius-base: 4px; // 组件/浮层圆角
+@border-color-base: #d9d9d9; // 边框色
+@box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // 浮层阴影
+
+@brand-primary: #ffb342; // #337ab7 // 全局主色
+@brand-success: #26C505;
+@brand-info: #0091FF;
+@brand-warning: #ff976a;
+@brand-danger: #FB616E;
+@gray-dark:#434A54;
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+@body-bg: #fff;
+//** Global text color on `<body>`.
+@text-color: @gray-dark;
+
+//** Global textual link color.
+@link-color: @brand-primary;
+//** Link hover color set via `darken()` function.
+@link-hover-color: darken(@link-color, 15%);
+//** Link hover decoration.
+@link-hover-decoration: underline;
+
+// 禁止换行, 文本溢出省略号显示 (一行)
+.ellipsis() {
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-all;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+// 文本溢出省略号显示 (多行)
+// 只支持 webkit 浏览器, 解决方案：高度 = 行高*行数
+// height: 90px; line-height: 30px; -webkit-line-clamp: 3;
+.ellipsis-mult(@n: 3) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: @n;
+  word-break: break-all;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+// 2x 3x 背景图片
+.bg-image(@url) {
+  background-image: url("@url + '@2x.png'");
+  @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+    background-image: url("@url + '@3x.png'");
+  }
+}
+
+// 三角形
+.triangle(@width: 4px,@color: #000) {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  border-top: @width solid @color;
+  border-left: @width solid transparent;
+  border-right: @width solid transparent;
+}
+
+// 三角形箭头气泡效果, IE6-7 无表现
+.arrow(top, @w: 10px, @color, @x: 50%) {
+  position: relative;
+  &:before {
+    position: absolute;
+    bottom: 100%;
+    left: @x;
+    content: " ";
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    border-style: solid;
+    border-color: transparent;
+    border-bottom-color: @color;
+    border-width: unit(@w, px);
+    @margin: -@w;
+    margin-left: unit(@margin, px);
+  }
+}
+.arrow(right, @w: 10px, @color, @y: 50%) {
+  position: relative;
+  &:before {
+    position: absolute;
+    left: 100%;
+    top: @y;
+    content: " ";
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    border-style: solid;
+    border-color: transparent;
+    border-left-color: @color;
+    border-width: unit(@w, px);
+    @margin: -@w;
+    margin-top: unit(@margin, px);
+  }
+}
+.arrow(bottom, @w: 10px, @color, @x: 50%) {
+  position: relative;
+  &:before {
+    position: absolute;
+    top: 100%;
+    left: @x;
+    content: " ";
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    border-style: solid;
+    border-color: transparent;
+    border-top-color: @color;
+    border-width: unit(@w, px);
+    @margin: -@w;
+    margin-left: unit(@margin, px);
+  }
+}
+.arrow(left, @w: 10px, @color, @y: 50%) {
+  position: relative;
+  &:before {
+    position: absolute;
+    right: 100%;
+    top: @y;
+    content: " ";
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    border-style: solid;
+    border-color: transparent;
+    border-right-color: @color;
+    border-width: unit(@w, px);
+    @margin: -@w;
+    margin-top: unit(@margin, px);
+  }
+}
+
+// 三角形箭头气泡效果, 带边框
+.arrow-with-border(top, @w: 10px, @color, @border-w: 1px, @border-color, @x: 50%) {
+  position: relative;
+  &:before,
+  &:after {
+    bottom: 100%;
+    left: @x;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-style: solid;
+    border-color: transparent;
+  }
+  &:after {
+    border-bottom-color: @color;
+    border-width: unit(@w, px);
+    @margin: -@w;
+    margin-left: unit(@margin, px);
+  }
+  &:before {
+    border-bottom-color: @border-color;
+    @arrbo: @w+ @border-w;
+    border-width: unit(@arrbo, px);
+    @margin-bo: -@arrbo;
+    margin-left: unit(@margin-bo, px);
+  }
+}
+.arrow-with-border(bottom, @w: 10px, @color, @border-w: 1px, @border-color, @x: 50%) {
+  position: relative;
+  &:before,
+  &:after {
+    top: 100%;
+    left: @x;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-style: solid;
+    border-color: transparent;
+  }
+  &:after {
+    border-top-color: @color;
+    border-width: unit(@w, px);
+    @margin: -@w;
+    margin-left: unit(@margin, px);
+  }
+  &:before {
+    border-top-color: @border-color;
+    @arrbo: @w+ @border-w;
+    border-width: unit(@arrbo, px);
+    @margin-bo: -@arrbo;
+    margin-left: unit(@margin-bo, px);
+  }
+}
+.arrow-with-border(left, @w: 10px, @color, @border-w: 1px, @border-color, @y: 50%) {
+  position: relative;
+  &:before,
+  &:after {
+    top: @y;
+    right: 100%;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-style: solid;
+    border-color: transparent;
+  }
+  &:after {
+    border-right-color: @color;
+    border-width: unit(@w, px);
+    @margin: -@w;
+    margin-top: unit(@margin, px);
+  }
+  &:before {
+    border-right-color: @border-color;
+    @arrbo: @w+ @border-w;
+    border-width: unit(@arrbo, px);
+    @margin-bo: -@arrbo;
+    margin-top: unit(@margin-bo, px);
+  }
+}
+.arrow-with-border(right, @w: 10px, @color, @border-w: 1px, @border-color, @y: 50%) {
+  position: relative;
+  &:before,
+  &:after {
+    top: @y;
+    left: 100%;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-style: solid;
+    border-color: transparent;
+  }
+  &:after {
+    border-left-color: @color;
+    border-width: unit(@w, px);
+    @margin: -@w;
+    margin-top: unit(@margin, px);
+  }
+  &:before {
+    border-left-color: @border-color;
+    @arrbo: @w+ @border-w;
+    border-width: unit(@arrbo, px);
+    @margin-bo: -@arrbo;
+    margin-top: unit(@margin-bo, px);
+  }
+}
+
+// 引用区块（模仿 Layui）
+// <div class="blockquote">Lorem ipsum dolor sit amet.</div>
+.blockquote() {
+  margin-bottom: 10px;
+  padding: 15px;
+  line-height: 22px;
+  border-left: 5px solid #009688;
+  border-radius: 0 2px 2px 0;
+  background-color: #f2f2f2;
+}
