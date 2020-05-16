@@ -1,0 +1,1252 @@
+[
+    {
+      "chineseName": "\u4e2d\u56fd",
+      "englishName": "China",
+      "phoneCode": "86"
+    },
+    {
+      "chineseName": "\u963f\u5c14\u5df4\u5c3c\u4e9a",
+      "englishName": "Albania",
+      "phoneCode": "355"
+    },
+    {
+      "chineseName": "\u5b89\u9053\u5c14",
+      "englishName": "Andorra",
+      "phoneCode": "376"
+    },
+    {
+      "chineseName": "\u5965\u5730\u5229",
+      "englishName": "Austria",
+      "phoneCode": "43"
+    },
+    {
+      "chineseName": "\u6fb3\u5927\u5229\u4e9a",
+      "englishName": "Australia",
+      "phoneCode": "61"
+    },
+    {
+      "chineseName": "\u963f\u5c14\u53ca\u5229\u4e9a",
+      "englishName": "Algeria",
+      "phoneCode": "213"
+    },
+    {
+      "chineseName": "\u5b89\u54e5\u62c9",
+      "englishName": "Angola",
+      "phoneCode": "244"
+    },
+    {
+      "chineseName": "\u963f\u6839\u5ef7",
+      "englishName": "Argentina",
+      "phoneCode": "54"
+    },
+    {
+      "chineseName": "\u5b89\u63d0\u74dc\u548c\u5df4\u5e03\u8fbe",
+      "englishName": "Antigua and Barbuda",
+      "phoneCode": "1268"
+    },
+    {
+      "chineseName": "\u963f\u5bcc\u6c57",
+      "englishName": "Afghanistan",
+      "phoneCode": "93"
+    },
+    {
+      "chineseName": "\u963f\u585e\u62dc\u7586",
+      "englishName": "Azerbaijan",
+      "phoneCode": "994"
+    },
+    {
+      "chineseName": "\u963f\u62c9\u65af\u52a0",
+      "englishName": "Alaska(U.S.A)",
+      "phoneCode": "1907"
+    },
+    {
+      "chineseName": "\u4e9a\u7f8e\u5c3c\u4e9a",
+      "englishName": "Armenia",
+      "phoneCode": "374"
+    },
+    {
+      "chineseName": "\u5b89\u572d\u62c9\u5c9b(\u82f1)",
+      "englishName": "Anguilla I.",
+      "phoneCode": "1264"
+    },
+    {
+      "chineseName": "\u963f\u9c81\u5df4\u5c9b",
+      "englishName": "Aruba I.",
+      "phoneCode": "297"
+    },
+    {
+      "chineseName": "\u963f\u68ee\u677e(\u82f1)",
+      "englishName": "Ascension",
+      "phoneCode": "247"
+    },
+    {
+      "chineseName": "\u767d\u4fc4\u7f57\u65af",
+      "englishName": "Belarus",
+      "phoneCode": "375"
+    },
+    {
+      "chineseName": "\u4fdd\u52a0\u5229\u4e9a",
+      "englishName": "Bulgaria",
+      "phoneCode": "359"
+    },
+    {
+      "chineseName": "\u6bd4\u5229\u65f6",
+      "englishName": "Belgium",
+      "phoneCode": "32"
+    },
+    {
+      "chineseName": "\u6ce2\u9ed1",
+      "englishName": "Bosnia",
+      "phoneCode": "387"
+    },
+    {
+      "chineseName": "\u8d1d\u5b81",
+      "englishName": "Benin",
+      "phoneCode": "229"
+    },
+    {
+      "chineseName": "\u535a\u8328\u74e6\u7eb3",
+      "englishName": "Botswana",
+      "phoneCode": "267"
+    },
+    {
+      "chineseName": "\u5e03\u57fa\u7eb3\u6cd5\u7d22",
+      "englishName": "Burkina Faso",
+      "phoneCode": "226"
+    },
+    {
+      "chineseName": "\u5e03\u9686\u8fea",
+      "englishName": "Burundi",
+      "phoneCode": "257"
+    },
+    {
+      "chineseName": "\u5df4\u5df4\u591a\u65af",
+      "englishName": "Barbados",
+      "phoneCode": "1246"
+    },
+    {
+      "chineseName": "\u5df4\u897f",
+      "englishName": "Brazil",
+      "phoneCode": "55"
+    },
+    {
+      "chineseName": "\u73bb\u5229\u7ef4\u4e9a",
+      "englishName": "Bolivia",
+      "phoneCode": "591"
+    },
+    {
+      "chineseName": "\u4f2f\u5229\u5179",
+      "englishName": "Belize",
+      "phoneCode": "501"
+    },
+    {
+      "chineseName": "\u5df4\u6797",
+      "englishName": "Bahrain",
+      "phoneCode": "973"
+    },
+    {
+      "chineseName": "\u4e0d\u4e39",
+      "englishName": "Bhutan",
+      "phoneCode": "975"
+    },
+    {
+      "chineseName": "\u5b5f\u52a0\u62c9\u56fd",
+      "englishName": "Bangladesh",
+      "phoneCode": "880"
+    },
+    {
+      "chineseName": "\u6587\u83b1",
+      "englishName": "Brunei Darussalam",
+      "phoneCode": "673"
+    },
+    {
+      "chineseName": "\u767e\u6155\u5927\u7fa4\u5c9b(\u82f1)",
+      "englishName": "Bermuda Is.",
+      "phoneCode": "1441"
+    },
+    {
+      "chineseName": "\u6ce2\u65af\u5c3c\u4e9a\u548c\u9ed1\u585e\u54e5\u7ef4\u90a3",
+      "englishName": "Bosnia And Herzegovina",
+      "phoneCode": "387"
+    },
+    {
+      "chineseName": "\u6377\u514b",
+      "englishName": "Czech",
+      "phoneCode": "420"
+    },
+    {
+      "chineseName": "\u514b\u7f57\u5730\u4e9a",
+      "englishName": "Croatia",
+      "phoneCode": "383"
+    },
+    {
+      "chineseName": "\u5e93\u514b\u7fa4\u5c9b",
+      "englishName": "Cook Islands",
+      "phoneCode": "682"
+    },
+    {
+      "chineseName": "\u4f5b\u5f97\u89d2",
+      "englishName": "Cape Verde",
+      "phoneCode": "238"
+    },
+    {
+      "chineseName": "\u521a\u679c",
+      "englishName": "Congo",
+      "phoneCode": "242"
+    },
+    {
+      "chineseName": "\u5580\u9ea6\u9686",
+      "englishName": "Cameroon",
+      "phoneCode": "237"
+    },
+    {
+      "chineseName": "\u79d1\u6469\u7f57",
+      "englishName": "Comoro",
+      "phoneCode": "269"
+    },
+    {
+      "chineseName": "\u4e4d\u5f97",
+      "englishName": "Chad",
+      "phoneCode": "235"
+    },
+    {
+      "chineseName": "\u4e2d\u975e",
+      "englishName": "Central Africa",
+      "phoneCode": "236"
+    },
+    {
+      "chineseName": "\u5df4\u54c8\u9a6c",
+      "englishName": "Commonwealth of The Bahamas",
+      "phoneCode": "1809"
+    },
+    {
+      "chineseName": "\u54e5\u4f26\u6bd4\u4e9a",
+      "englishName": "Colombia",
+      "phoneCode": "57"
+    },
+    {
+      "chineseName": "\u54e5\u65af\u8fbe\u9ece\u52a0",
+      "englishName": "Costa Rica",
+      "phoneCode": "506"
+    },
+    {
+      "chineseName": "\u53e4\u5df4",
+      "englishName": "Cuba",
+      "phoneCode": "53"
+    },
+    {
+      "chineseName": "\u52a0\u62ff\u5927",
+      "englishName": "Canada",
+      "phoneCode": "1"
+    },
+    {
+      "chineseName": "\u667a\u5229",
+      "englishName": "Chile",
+      "phoneCode": "56"
+    },
+    {
+      "chineseName": "\u585e\u6d66\u8def\u65af",
+      "englishName": "Cyprus",
+      "phoneCode": "357"
+    },
+    {
+      "chineseName": "\u52a0\u90a3\u5229\u7fa4\u5c9b",
+      "englishName": "Canaries Is.",
+      "phoneCode": "34"
+    },
+    {
+      "chineseName": "\u5f00\u66fc\u7fa4\u5c9b(\u82f1)",
+      "englishName": "Cayman Is.",
+      "phoneCode": "1345"
+    },
+    {
+      "chineseName": "\u5723\u8bde\u5c9b",
+      "englishName": "Christmas I.",
+      "phoneCode": "61 9164"
+    },
+    {
+      "chineseName": "\u79d1\u79d1\u65af\u5c9b",
+      "englishName": "Cocos I.",
+      "phoneCode": "61 9162"
+    },
+    {
+      "chineseName": "\u591a\u7c73\u5c3c\u514b\u56fd",
+      "englishName": "Commonwealth of Dominica",
+      "phoneCode": "1809"
+    },
+    {
+      "chineseName": "\u79d1\u514b\u7fa4\u5c9b(\u65b0)",
+      "englishName": "Cook IS.",
+      "phoneCode": "682"
+    },
+    {
+      "chineseName": "\u4e39\u9ea6",
+      "englishName": "Denmark",
+      "phoneCode": "45"
+    },
+    {
+      "chineseName": "\u5409\u5e03\u63d0",
+      "englishName": "Djibouti",
+      "phoneCode": "253"
+    },
+    {
+      "chineseName": "\u591a\u7c73\u5c3c\u52a0",
+      "englishName": "Dominica",
+      "phoneCode": "1767"
+    },
+    {
+      "chineseName": "\u591a\u7c73\u5c3c\u52a0\u8054\u90a6",
+      "englishName": "Dominican Republic",
+      "phoneCode": "809"
+    },
+    {
+      "chineseName": "\u8fea\u6208\u52a0\u897f\u4e9a\u5c9b",
+      "englishName": "Diego Garcia I.",
+      "phoneCode": "246"
+    },
+    {
+      "chineseName": "\u7231\u6c99\u5c3c\u4e9a",
+      "englishName": "Estonia",
+      "phoneCode": "372"
+    },
+    {
+      "chineseName": "\u57c3\u53ca",
+      "englishName": "Egypt",
+      "phoneCode": "20"
+    },
+    {
+      "chineseName": "\u57c3\u585e\u4fc4\u6bd4\u4e9a",
+      "englishName": "Ethiopia",
+      "phoneCode": "251"
+    },
+    {
+      "chineseName": "\u8d64\u9053\u51e0\u5185\u4e9a",
+      "englishName": "Equatorial Guinea",
+      "phoneCode": "240"
+    },
+    {
+      "chineseName": "\u5384\u7acb\u7279\u91cc\u4e9a",
+      "englishName": "Eritrea",
+      "phoneCode": "291"
+    },
+    {
+      "chineseName": "\u5384\u74dc\u591a\u5c14",
+      "englishName": "Ecuador",
+      "phoneCode": "593"
+    },
+    {
+      "chineseName": "\u8428\u5c14\u74e6\u591a",
+      "englishName": "El Salvador",
+      "phoneCode": "503"
+    },
+    {
+      "chineseName": "\u6cd5\u56fd",
+      "englishName": "France",
+      "phoneCode": "33"
+    },
+    {
+      "chineseName": "\u82ac\u5170",
+      "englishName": "Finland",
+      "phoneCode": "358"
+    },
+    {
+      "chineseName": "\u6590\u6d4e",
+      "englishName": "Fiji",
+      "phoneCode": "679"
+    },
+    {
+      "chineseName": "\u798f\u514b\u5170\u7fa4\u5c9b",
+      "englishName": "Falkland Is.",
+      "phoneCode": "500"
+    },
+    {
+      "chineseName": "\u6cd5\u7f57\u7fa4\u5c9b(\u4e39)",
+      "englishName": "Faroe Is.",
+      "phoneCode": "298"
+    },
+    {
+      "chineseName": "\u6cd5\u5c5e\u572d\u4e9a\u90a3",
+      "englishName": "French Guiana",
+      "phoneCode": "594"
+    },
+    {
+      "chineseName": "\u6cd5\u5c5e\u6ce2\u91cc\u5c3c\u897f\u4e9a",
+      "englishName": "French Polynesia",
+      "phoneCode": "689"
+    },
+    {
+      "chineseName": "\u5fb7\u56fd",
+      "englishName": "Germany",
+      "phoneCode": "49"
+    },
+    {
+      "chineseName": "\u5e0c\u814a",
+      "englishName": "Greece",
+      "phoneCode": "30"
+    },
+    {
+      "chineseName": "\u5188\u6bd4\u4e9a",
+      "englishName": "Gambia",
+      "phoneCode": "220"
+    },
+    {
+      "chineseName": "\u51e0\u5185\u4e9a",
+      "englishName": "Guinea",
+      "phoneCode": "224"
+    },
+    {
+      "chineseName": "\u51e0\u5185\u4e9a\u6bd4\u7ecd",
+      "englishName": "Guinea-Bissau",
+      "phoneCode": "245"
+    },
+    {
+      "chineseName": "\u52a0\u7eb3",
+      "englishName": "Ghana",
+      "phoneCode": "233"
+    },
+    {
+      "chineseName": "\u52a0\u84ec",
+      "englishName": "Gabon",
+      "phoneCode": "241"
+    },
+    {
+      "chineseName": "\u683c\u6797\u7eb3\u8fbe",
+      "englishName": "Grenada",
+      "phoneCode": "1809"
+    },
+    {
+      "chineseName": "\u572d\u4e9a\u90a3",
+      "englishName": "Guyana",
+      "phoneCode": "592"
+    },
+    {
+      "chineseName": "\u5371\u5730\u9a6c\u62c9",
+      "englishName": "Guatemala",
+      "phoneCode": "502"
+    },
+    {
+      "chineseName": "\u683c\u9c81\u5409\u4e9a",
+      "englishName": "Georgia",
+      "phoneCode": "995"
+    },
+    {
+      "chineseName": "\u76f4\u5e03\u7f57\u9640(\u82f1)",
+      "englishName": "Gibraltar",
+      "phoneCode": "350"
+    },
+    {
+      "chineseName": "\u683c\u9675\u5170\u5c9b",
+      "englishName": "Greenland",
+      "phoneCode": "299"
+    },
+    {
+      "chineseName": "\u74dc\u5fb7\u7f57\u666e\u5c9b(\u6cd5)",
+      "englishName": "Guadeloupe I.",
+      "phoneCode": "590"
+    },
+    {
+      "chineseName": "\u5173\u5c9b(\u7f8e)",
+      "englishName": "Guam",
+      "phoneCode": "671"
+    },
+    {
+      "chineseName": "\u5308\u7259\u5229",
+      "englishName": "Hungary",
+      "phoneCode": "36"
+    },
+    {
+      "chineseName": "\u6d77\u5730",
+      "englishName": "Haiti",
+      "phoneCode": "509"
+    },
+    {
+      "chineseName": "\u6d2a\u90fd\u62c9\u65af",
+      "englishName": "Honduras",
+      "phoneCode": "504"
+    },
+    {
+      "chineseName": "\u590f\u5a01\u5937",
+      "englishName": "Hawaii",
+      "phoneCode": "1808"
+    },
+    {
+      "chineseName": "\u7231\u5c14\u5170",
+      "englishName": "Ireland",
+      "phoneCode": "353"
+    },
+    {
+      "chineseName": "\u51b0\u5c9b",
+      "englishName": "Iceland",
+      "phoneCode": "354"
+    },
+    {
+      "chineseName": "\u610f\u5927\u5229",
+      "englishName": "Italy",
+      "phoneCode": "39"
+    },
+    {
+      "chineseName": "\u79d1\u7279\u8fea\u74e6",
+      "englishName": "Ivory Coast",
+      "phoneCode": "225"
+    },
+    {
+      "chineseName": "\u4f0a\u62c9\u514b",
+      "englishName": "Iraq",
+      "phoneCode": "964"
+    },
+    {
+      "chineseName": "\u4f0a\u6717",
+      "englishName": "Iran",
+      "phoneCode": "98"
+    },
+    {
+      "chineseName": "\u4ee5\u8272\u5217",
+      "englishName": "Israel",
+      "phoneCode": "972"
+    },
+    {
+      "chineseName": "\u5370\u5ea6",
+      "englishName": "India",
+      "phoneCode": "91"
+    },
+    {
+      "chineseName": "\u5370\u5ea6\u5c3c\u897f\u4e9a",
+      "englishName": "Indonesia",
+      "phoneCode": "62"
+    },
+    {
+      "chineseName": "\u7259\u4e70\u52a0",
+      "englishName": "Jamaica",
+      "phoneCode": "1876"
+    },
+    {
+      "chineseName": "\u65e5\u672c",
+      "englishName": "Japan",
+      "phoneCode": "81"
+    },
+    {
+      "chineseName": "\u7ea6\u65e6",
+      "englishName": "Jordan",
+      "phoneCode": "962"
+    },
+    {
+      "chineseName": "\u57fa\u91cc\u5df4\u65af",
+      "englishName": "Kiribati",
+      "phoneCode": "686"
+    },
+    {
+      "chineseName": "\u80af\u5c3c\u4e9a",
+      "englishName": "Kenya",
+      "phoneCode": "254"
+    },
+    {
+      "chineseName": "\u671d\u9c9c",
+      "englishName": "Korea(dpr of)",
+      "phoneCode": "85"
+    },
+    {
+      "chineseName": "\u54c8\u8428\u514b\u65af\u5766",
+      "englishName": "Kazakhstan",
+      "phoneCode": "7"
+    },
+    {
+      "chineseName": "\u97e9\u56fd",
+      "englishName": "Korea(republic of)",
+      "phoneCode": "82"
+    },
+    {
+      "chineseName": "\u5409\u5c14\u5409\u65af\u65af\u5766",
+      "englishName": "Kyrgyzstan",
+      "phoneCode": "996"
+    },
+    {
+      "chineseName": "\u67ec\u57d4\u5be8",
+      "englishName": "Kampuchea",
+      "phoneCode": "855"
+    },
+    {
+      "chineseName": "\u79d1\u5a01\u7279",
+      "englishName": "Kuwait",
+      "phoneCode": "965"
+    },
+    {
+      "chineseName": "\u62c9\u6258\u7ef4\u4e9a",
+      "englishName": "Latvia",
+      "phoneCode": "371"
+    },
+    {
+      "chineseName": "\u7acb\u9676\u5b9b",
+      "englishName": "Lithuania",
+      "phoneCode": "370"
+    },
+    {
+      "chineseName": "\u5217\u652f\u6566\u58eb\u767b",
+      "englishName": "Liechtenstein",
+      "phoneCode": "41"
+    },
+    {
+      "chineseName": "\u5362\u68ee\u5821",
+      "englishName": "Luxembourg",
+      "phoneCode": "352"
+    },
+    {
+      "chineseName": "\u83b1\u7d22\u6258",
+      "englishName": "Lesotho",
+      "phoneCode": "266"
+    },
+    {
+      "chineseName": "\u5229\u6bd4\u91cc\u4e9a",
+      "englishName": "Liberia",
+      "phoneCode": "231"
+    },
+    {
+      "chineseName": "\u5229\u6bd4\u4e9a",
+      "englishName": "Libya",
+      "phoneCode": "218"
+    },
+    {
+      "chineseName": "\u8001\u631d",
+      "englishName": "Laos",
+      "phoneCode": "856"
+    },
+    {
+      "chineseName": "\u9ece\u5df4\u5ae9",
+      "englishName": "Lebanon",
+      "phoneCode": "961"
+    },
+    {
+      "chineseName": "\u9a6c\u8033\u4ed6",
+      "englishName": "Malta",
+      "phoneCode": "356"
+    },
+    {
+      "chineseName": "\u9a6c\u5176\u987f",
+      "englishName": "Macedonia",
+      "phoneCode": "389"
+    },
+    {
+      "chineseName": "\u6469\u5c14\u591a\u74e6",
+      "englishName": "Moldova",
+      "phoneCode": "373"
+    },
+    {
+      "chineseName": "\u6469\u7eb3\u54e5",
+      "englishName": "Monaco",
+      "phoneCode": "377"
+    },
+    {
+      "chineseName": "\u9a6c\u7ecd\u5c14\u7fa4\u5c9b",
+      "englishName": "Marshall Is.",
+      "phoneCode": "692"
+    },
+    {
+      "chineseName": "\u5bc6\u514b\u7f57\u5c3c\u897f\u4e9a",
+      "englishName": "Micronesia",
+      "phoneCode": "691"
+    },
+    {
+      "chineseName": "\u9a6c\u8fbe\u52a0\u65af\u52a0",
+      "englishName": "Madagascar",
+      "phoneCode": "261"
+    },
+    {
+      "chineseName": "\u9a6c\u62c9\u7ef4",
+      "englishName": "Malawi",
+      "phoneCode": "265"
+    },
+    {
+      "chineseName": "\u9a6c\u91cc",
+      "englishName": "Mali",
+      "phoneCode": "223"
+    },
+    {
+      "chineseName": "\u6bdb\u91cc\u6c42\u65af",
+      "englishName": "Mauritius",
+      "phoneCode": "230"
+    },
+    {
+      "chineseName": "\u6bdb\u91cc\u5854\u5c3c\u4e9a",
+      "englishName": "Mauritania",
+      "phoneCode": "222"
+    },
+    {
+      "chineseName": "\u6469\u6d1b\u54e5",
+      "englishName": "Morocco",
+      "phoneCode": "212"
+    },
+    {
+      "chineseName": "\u83ab\u6851\u6bd4\u514b",
+      "englishName": "Mozambique",
+      "phoneCode": "258"
+    },
+    {
+      "chineseName": "\u58a8\u897f\u54e5",
+      "englishName": "Mexico",
+      "phoneCode": "52"
+    },
+    {
+      "chineseName": "\u6fb3\u95e8",
+      "englishName": "Macao",
+      "phoneCode": "853"
+    },
+    {
+      "chineseName": "\u9a6c\u5c14\u4ee3\u592b",
+      "englishName": "Maldive",
+      "phoneCode": "960"
+    },
+    {
+      "chineseName": "\u9a6c\u6765\u897f\u4e9a",
+      "englishName": "Malaysia",
+      "phoneCode": "60"
+    },
+    {
+      "chineseName": "\u8499\u53e4",
+      "englishName": "Mongolia",
+      "phoneCode": "976"
+    },
+    {
+      "chineseName": "\u7f05\u7538",
+      "englishName": "Myanmar",
+      "phoneCode": "95"
+    },
+    {
+      "chineseName": "\u9a6c\u91cc\u4e9a\u7eb3\u7fa4\u5c9b",
+      "englishName": "Mariana Is.",
+      "phoneCode": "670"
+    },
+    {
+      "chineseName": "\u9a6c\u63d0\u5c3c\u514b(\u6cd5)",
+      "englishName": "Martinique",
+      "phoneCode": "596"
+    },
+    {
+      "chineseName": "\u9a6c\u7ea6\u7279\u5c9b",
+      "englishName": "Mayotte I.",
+      "phoneCode": "269"
+    },
+    {
+      "chineseName": "\u5bc6\u514b\u7f57\u5c3c\u897f\u4e9a(\u7f8e)",
+      "englishName": "Micronesia",
+      "phoneCode": "691"
+    },
+    {
+      "chineseName": "\u4e2d\u9014\u5c9b(\u7f8e)",
+      "englishName": "Midway I.",
+      "phoneCode": "1808"
+    },
+    {
+      "chineseName": "\u8499\u7279\u585e\u62c9\u7279\u5c9b(\u82f1)",
+      "englishName": "Montserrat I.",
+      "phoneCode": "1664"
+    },
+    {
+      "chineseName": "\u8377\u5170",
+      "englishName": "Netherlands",
+      "phoneCode": "31"
+    },
+    {
+      "chineseName": "\u632a\u5a01",
+      "englishName": "Norway",
+      "phoneCode": "47"
+    },
+    {
+      "chineseName": "\u7459\u9c81",
+      "englishName": "Nauru",
+      "phoneCode": "674"
+    },
+    {
+      "chineseName": "\u65b0\u897f\u5170",
+      "englishName": "New Zealand",
+      "phoneCode": "64"
+    },
+    {
+      "chineseName": "\u7eb3\u7c73\u6bd4\u4e9a",
+      "englishName": "Namibia",
+      "phoneCode": "264"
+    },
+    {
+      "chineseName": "\u5c3c\u65e5\u5c14",
+      "englishName": "Niger",
+      "phoneCode": "227"
+    },
+    {
+      "chineseName": "\u5c3c\u65e5\u5229\u4e9a",
+      "englishName": "Nigeria",
+      "phoneCode": "234"
+    },
+    {
+      "chineseName": "\u5c3c\u52a0\u62c9\u74dc",
+      "englishName": "Nicaragua",
+      "phoneCode": "505"
+    },
+    {
+      "chineseName": "\u5c3c\u6cca\u5c14",
+      "englishName": "Nepal",
+      "phoneCode": "977"
+    },
+    {
+      "chineseName": "\u8377\u5c5e\u5b89\u7684\u5217\u65af\u7fa4\u5c9b",
+      "englishName": "Netherlandsantilles Is.",
+      "phoneCode": "599"
+    },
+    {
+      "chineseName": "\u65b0\u5580\u91cc\u591a\u5c3c\u4e9a\u7fa4\u5c9b(\u6cd5)",
+      "englishName": "New Caledonia Is.",
+      "phoneCode": "687"
+    },
+    {
+      "chineseName": "\u7ebd\u57c3\u5c9b(\u65b0)",
+      "englishName": "Niue I.",
+      "phoneCode": "683"
+    },
+    {
+      "chineseName": "\u8bfa\u798f\u514b\u5c9b(\u6fb3)",
+      "englishName": "Norfolk I,",
+      "phoneCode": "6723"
+    },
+    {
+      "chineseName": "\u963f\u66fc",
+      "englishName": "Oman",
+      "phoneCode": "968"
+    },
+    {
+      "chineseName": "\u6ce2\u5170",
+      "englishName": "Poland",
+      "phoneCode": "48"
+    },
+    {
+      "chineseName": "\u8461\u8404\u7259",
+      "englishName": "Portugal",
+      "phoneCode": "351"
+    },
+    {
+      "chineseName": "\u5df4\u5e03\u4e9a\u65b0\u51e0\u5185\u4e9a",
+      "englishName": "Papua New Guinea",
+      "phoneCode": "675"
+    },
+    {
+      "chineseName": "\u5e15\u52b3",
+      "englishName": "Palau",
+      "phoneCode": "680"
+    },
+    {
+      "chineseName": "\u5df4\u62c9\u572d",
+      "englishName": "Paraguay",
+      "phoneCode": "595"
+    },
+    {
+      "chineseName": "\u5df4\u62ff\u9a6c",
+      "englishName": "Panama",
+      "phoneCode": "507"
+    },
+    {
+      "chineseName": "\u79d8\u9c81",
+      "englishName": "Peru",
+      "phoneCode": "51"
+    },
+    {
+      "chineseName": "\u5df4\u57fa\u65af\u5766",
+      "englishName": "Pakistan",
+      "phoneCode": "92"
+    },
+    {
+      "chineseName": "\u5df4\u52d2\u65af\u5766",
+      "englishName": "Palestinian",
+      "phoneCode": "930"
+    },
+    {
+      "chineseName": "\u83f2\u5f8b\u5bbe",
+      "englishName": "Philippines",
+      "phoneCode": "63"
+    },
+    {
+      "chineseName": "\u5e15\u52b3(\u7f8e)",
+      "englishName": "Palau",
+      "phoneCode": "680"
+    },
+    {
+      "chineseName": "\u6ce2\u591a\u9ece\u5404(\u7f8e)",
+      "englishName": "Puerto Rico",
+      "phoneCode": "1787"
+    },
+    {
+      "chineseName": "\u5361\u5854\u5c14",
+      "englishName": "Qatar",
+      "phoneCode": "974"
+    },
+    {
+      "chineseName": "\u4fc4\u7f57\u65af",
+      "englishName": "Russia",
+      "phoneCode": "7"
+    },
+    {
+      "chineseName": "\u7f57\u9a6c\u5c3c\u4e9a",
+      "englishName": "Romania",
+      "phoneCode": "40"
+    },
+    {
+      "chineseName": "\u5362\u65fa\u8fbe",
+      "englishName": "Rwanda",
+      "phoneCode": "250"
+    },
+    {
+      "chineseName": "\u7559\u5c3c\u6c6a\u5c9b",
+      "englishName": "Reunion I.",
+      "phoneCode": "262"
+    },
+    {
+      "chineseName": "\u585e\u5c14\u7ef4\u4e9a",
+      "englishName": "Serbia",
+      "phoneCode": "381"
+    },
+    {
+      "chineseName": "\u745e\u5178",
+      "englishName": "Sweden",
+      "phoneCode": "46"
+    },
+    {
+      "chineseName": "\u745e\u58eb",
+      "englishName": "Switzerland",
+      "phoneCode": "41"
+    },
+    {
+      "chineseName": "\u5723\u9a6c\u5229\u8bfa",
+      "englishName": "San Marino",
+      "phoneCode": "378"
+    },
+    {
+      "chineseName": "\u65af\u6d1b\u4f10\u514b",
+      "englishName": "Slovak",
+      "phoneCode": "421"
+    },
+    {
+      "chineseName": "\u65af\u6d1b\u6587\u5c3c\u4e9a",
+      "englishName": "Slovenia",
+      "phoneCode": "386"
+    },
+    {
+      "chineseName": "\u897f\u73ed\u7259",
+      "englishName": "Spain",
+      "phoneCode": "34"
+    },
+    {
+      "chineseName": "\u8428\u6469\u4e9a",
+      "englishName": "Samoa",
+      "phoneCode": "685"
+    },
+    {
+      "chineseName": "\u6240\u7f57\u95e8\u7fa4\u5c9b",
+      "englishName": "Solomon Is.",
+      "phoneCode": "677"
+    },
+    {
+      "chineseName": "\u5357\u975e",
+      "englishName": "South Africa",
+      "phoneCode": "27"
+    },
+    {
+      "chineseName": "\u585e\u62c9\u5229\u6602",
+      "englishName": "Sierra Leone",
+      "phoneCode": "232"
+    },
+    {
+      "chineseName": "\u585e\u5185\u52a0\u5c14",
+      "englishName": "Senegal",
+      "phoneCode": "221"
+    },
+    {
+      "chineseName": "\u585e\u820c\u5c14",
+      "englishName": "Seychelles",
+      "phoneCode": "248"
+    },
+    {
+      "chineseName": "\u5723\u591a\u7f8e\u548c\u666e\u6797\u897f\u6bd4",
+      "englishName": "San.Tome And Principe",
+      "phoneCode": "239"
+    },
+    {
+      "chineseName": "\u65af\u5a01\u58eb\u5170",
+      "englishName": "Swaziland",
+      "phoneCode": "268"
+    },
+    {
+      "chineseName": "\u82cf\u4e39",
+      "englishName": "Sudan",
+      "phoneCode": "249"
+    },
+    {
+      "chineseName": "\u7d22\u9a6c\u91cc",
+      "englishName": "Somali",
+      "phoneCode": "252"
+    },
+    {
+      "chineseName": "\u5723\u57fa\u8328\u548c\u5c3c\u7ef4\u65af",
+      "englishName": "St.Christopher and Nevis",
+      "phoneCode": "1809"
+    },
+    {
+      "chineseName": "\u5723\u5362\u897f\u4e9a",
+      "englishName": "St.Lucia",
+      "phoneCode": "1758"
+    },
+    {
+      "chineseName": "\u5723\u6587\u68ee\u7279\u548c\u683c\u6797\u7eb3\u4e01\u65af",
+      "englishName": "Saint Vincent and the Grenadines",
+      "phoneCode": "1784"
+    },
+    {
+      "chineseName": "\u82cf\u91cc\u5357",
+      "englishName": "Suriname",
+      "phoneCode": "597"
+    },
+    {
+      "chineseName": "\u6c99\u7279\u963f\u62c9\u4f2f",
+      "englishName": "Saudi Arabia",
+      "phoneCode": "966"
+    },
+    {
+      "chineseName": "\u65af\u91cc\u5170\u5361",
+      "englishName": "Sri Lanka",
+      "phoneCode": "94"
+    },
+    {
+      "chineseName": "\u65b0\u52a0\u5761",
+      "englishName": "Singapore",
+      "phoneCode": "65"
+    },
+    {
+      "chineseName": "\u53d9\u5229\u4e9a",
+      "englishName": "Syria",
+      "phoneCode": "963"
+    },
+    {
+      "chineseName": "\u4e1c\u8428\u6469\u4e9a(\u7f8e)",
+      "englishName": "Samoa,Eastern",
+      "phoneCode": "684"
+    },
+    {
+      "chineseName": "\u897f\u8428\u6469\u4e9a",
+      "englishName": "Samoa,Western",
+      "phoneCode": "685"
+    },
+    {
+      "chineseName": "\u5723\u9a6c\u529b\u8bfa",
+      "englishName": "San.Marino",
+      "phoneCode": "378"
+    },
+    {
+      "chineseName": "\u5723\u76ae\u57c3\u5c14\u5c9b\u53ca\u5bc6\u514b\u9686\u5c9b",
+      "englishName": "San.Pierre And Miquelon I.",
+      "phoneCode": "508"
+    },
+    {
+      "chineseName": "\u5723\u514b\u91cc\u65af\u6258\u5f17\u548c\u5c3c\u7ef4\u65af",
+      "englishName": "St.Christopher and Nevis",
+      "phoneCode": "1809"
+    },
+    {
+      "chineseName": "\u5723\u8d6b\u52d2\u62ff",
+      "englishName": "St.Helena",
+      "phoneCode": "290"
+    },
+    {
+      "chineseName": "\u5723\u6587\u68ee\u7279\u5c9b(\u82f1)",
+      "englishName": "St.Vincent I.",
+      "phoneCode": "1784"
+    },
+    {
+      "chineseName": "\u6c64\u52a0",
+      "englishName": "Tonga",
+      "phoneCode": "676"
+    },
+    {
+      "chineseName": "\u56fe\u74e6\u5362",
+      "englishName": "Tuvalu",
+      "phoneCode": "688"
+    },
+    {
+      "chineseName": "\u591a\u54e5",
+      "englishName": "Togo",
+      "phoneCode": "228"
+    },
+    {
+      "chineseName": "\u521a\u679c\u6c11\u4e3b",
+      "englishName": "The Democratic Republic of Congo",
+      "phoneCode": "243"
+    },
+    {
+      "chineseName": "\u5766\u6851\u5c3c\u4e9a",
+      "englishName": "Tanzania",
+      "phoneCode": "255"
+    },
+    {
+      "chineseName": "\u7a81\u5c3c\u65af",
+      "englishName": "Tunisia",
+      "phoneCode": "216"
+    },
+    {
+      "chineseName": "\u7279\u7acb\u5c3c\u8fbe\u548c\u591a\u5df4\u54e5",
+      "englishName": "Trinidad and Tobago",
+      "phoneCode": "1809"
+    },
+    {
+      "chineseName": "\u963f\u62c9\u4f2f\u8054\u5408\u914b\u957f\u56fd",
+      "englishName": "The United Arab Emirates",
+      "phoneCode": "971"
+    },
+    {
+      "chineseName": "\u4e1c\u5e1d\u6c76",
+      "englishName": "Timor Leste",
+      "phoneCode": "670"
+    },
+    {
+      "chineseName": "\u5854\u5409\u514b\u65af\u5766",
+      "englishName": "Tajikistan",
+      "phoneCode": "992"
+    },
+    {
+      "chineseName": "\u6cf0\u56fd",
+      "englishName": "Thailand",
+      "phoneCode": "66"
+    },
+    {
+      "chineseName": "\u571f\u8033\u5176",
+      "englishName": "Turkey",
+      "phoneCode": "90"
+    },
+    {
+      "chineseName": "\u571f\u5e93\u66fc\u65af\u5766",
+      "englishName": "Turkmenistan",
+      "phoneCode": "993"
+    },
+    {
+      "chineseName": "\u6258\u514b\u52b3\u7fa4\u5c9b(\u65b0)",
+      "englishName": "Tokelau Is.",
+      "phoneCode": "690"
+    },
+    {
+      "chineseName": "\u7279\u514b\u65af\u548c\u51ef\u79d1\u65af\u7fa4\u5c9b",
+      "englishName": "Turks and Caicos Is.",
+      "phoneCode": "1809"
+    },
+    {
+      "chineseName": "\u4e4c\u514b\u5170",
+      "englishName": "Ukraine",
+      "phoneCode": "380"
+    },
+    {
+      "chineseName": "\u82f1\u56fd",
+      "englishName": "United Kingdom",
+      "phoneCode": "44"
+    },
+    {
+      "chineseName": "\u4e4c\u5e72\u8fbe",
+      "englishName": "Uganda",
+      "phoneCode": "256"
+    },
+    {
+      "chineseName": "\u7f8e\u56fd",
+      "englishName": "U.S.A",
+      "phoneCode": "1"
+    },
+    {
+      "chineseName": "\u4e4c\u62c9\u572d",
+      "englishName": "Uruguay",
+      "phoneCode": "598"
+    },
+    {
+      "chineseName": "\u4e4c\u5179\u522b\u514b\u65af\u5766",
+      "englishName": "Uzbekistan",
+      "phoneCode": "998"
+    },
+    {
+      "chineseName": "\u68b5\u8482\u5188",
+      "englishName": "Vatican",
+      "phoneCode": "379"
+    },
+    {
+      "chineseName": "\u74e6\u52aa\u963f\u56fe",
+      "englishName": "Vanuatu",
+      "phoneCode": "678"
+    },
+    {
+      "chineseName": "\u59d4\u5185\u745e\u62c9",
+      "englishName": "Venezuela",
+      "phoneCode": "58"
+    },
+    {
+      "chineseName": "\u8d8a\u5357",
+      "englishName": "Vietnam",
+      "phoneCode": "84"
+    },
+    {
+      "chineseName": "\u7ef4\u5c14\u4eac\u7fa4\u5c9b(\u82f1)",
+      "englishName": "Virgin Is.",
+      "phoneCode": "1809"
+    },
+    {
+      "chineseName": "\u7ef4\u5c14\u4eac\u7fa4\u5c9b\u548c\u5723\u7f57\u514b\u4f0a",
+      "englishName": "Virgin Is. and St.Croix I.",
+      "phoneCode": "1809"
+    },
+    {
+      "chineseName": "\u897f\u6492\u54c8\u62c9",
+      "englishName": "Western sahara",
+      "phoneCode": "967"
+    },
+    {
+      "chineseName": "\u5a01\u514b\u5c9b(\u7f8e)",
+      "englishName": "Wake I.",
+      "phoneCode": "1808"
+    },
+    {
+      "chineseName": "\u74e6\u91cc\u65af\u548c\u5bcc\u58eb\u90a3\u7fa4\u5c9b",
+      "englishName": "Wallis And Futuna Is.",
+      "phoneCode": "681"
+    },
+    {
+      "chineseName": "\u4e5f\u95e8",
+      "englishName": "Yemen",
+      "phoneCode": "967"
+    },
+    {
+      "chineseName": "\u5357\u65af\u62c9\u592b",
+      "englishName": "Yugoslavia",
+      "phoneCode": "381"
+    },
+    {
+      "chineseName": "\u6d25\u5df4\u5e03\u97e6",
+      "englishName": "Zimbabwe",
+      "phoneCode": "263"
+    },
+    {
+      "chineseName": "\u8d5e\u6bd4\u4e9a",
+      "englishName": "Zambia",
+      "phoneCode": "260"
+    },
+    {
+      "chineseName": "\u624e\u4f0a\u5c14",
+      "englishName": "Zaire",
+      "phoneCode": "243"
+    },
+    {
+      "chineseName": "\u6851\u7ed9\u5df4\u5c14",
+      "englishName": "Zanzibar",
+      "phoneCode": "259"
+    },
+    {
+      "chineseName": "\u9a6c\u6765\u897f\u4e9a",
+      "englishName": "Malaysia",
+      "phoneCode": "60"
+    },
+    {
+      "chineseName": "\u9999\u6e2f",
+      "englishName": "HongKong",
+      "phoneCode": "852"
+    },
+    {
+      "chineseName": "\u53f0\u6e7e\u7701",
+      "englishName": "Taiwan",
+      "phoneCode": "886"
+    }
+  ]

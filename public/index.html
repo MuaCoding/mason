@@ -1,17 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
+        <meta
+            name="viewport"
+            content="width=device-width, viewport-fit=cover,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+
+        <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+        <script src="./js/share.js"></script>
+        <title>MASON</title>
+    </head>
+    <body>
+        <noscript>
+            <strong>We're sorry but MASON doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+        </noscript>
+        <div id="app"></div>
+        <!-- built files will be auto injected -->
+        <script>
+            if ("<%= VUE_APP_ENV %>" == "testing" || "<%= VUE_APP_ENV %>" == "sendbox") {
+                (function() {
+                    var script = document.createElement("script");
+                    script.src = "https://cdn.jsdelivr.net/npm/eruda/eruda.min.js";
+                    document.head.appendChild(script);
+                    script.onload = function() {
+                        eruda.init();
+                    };
+                })();
+            }
+        </script>
+
+        <!-- <script>
+            !(function(e, n) {
+                var t = n.documentElement,
+                    o = e.devicePixelRatio || 1;
+                function a() {
+                    var e = (t.clientWidth || 375) / 23.4375;
+                    t.style.fontSize = e + "px";
+                }
+                if (
+                    (a(),
+                    e.addEventListener("resize", a),
+                    e.addEventListener("pageshow", function(e) {
+                        e.persisted &&
+                            setTimeout(function() {
+                                a();
+                            });
+                    }),
+                    2 <= o)
+                ) {
+                    var i = n.createElement("body"),
+                        r = n.createElement("div");
+                    (r.style.border = ".5px solid transparent"),
+                        i.appendChild(r),
+                        t.appendChild(i),
+                        1 === r.offsetHeight && t.classList.add("hairlines"),
+                        t.removeChild(i);
+                }
+            })(window, document);
+        </script> -->
+    </body>
 </html>

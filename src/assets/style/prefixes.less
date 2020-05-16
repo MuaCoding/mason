@@ -1,0 +1,49 @@
+@brand-primary: #fb5c70; // #337ab7
+@brand-success: #3adb18;
+@brand-info: #0091ff;
+@brand-warning: #fe9721;
+@brand-danger: #e32b31;
+@brand-gray: #a0a9b5;
+@brand-gray-dark: #434a54;
+
+@body-bg: #fffff;
+
+.border() {
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-top: 1px solid #ddd;
+        height: 200%;
+        width: 200%;
+        transform-origin: left top;
+        transform: scale(0.5);
+        pointer-events: none; /* 防止点击触发 */
+        box-sizing: border-box;
+    }
+}
+
+.ellipsis() {
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.text-ellipsis(@line) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: @line;
+    -webkit-box-orient: vertical;
+}
+
+.overflow(@line) {
+    overflow: hidden;
+    -webkit-line-clamp: @line;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}

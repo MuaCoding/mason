@@ -1,0 +1,7 @@
+/build/
+/config/
+/dist/
+/sendbox
+/*.js
+/test/unit/coverage/
+/src/*.vue

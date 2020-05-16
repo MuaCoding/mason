@@ -1,0 +1,397 @@
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.overflow {
+    .overflow(1);
+}
+
+.wrapper {
+    padding: 1.25rem 1rem;
+    position: relative;
+}
+
+.flex {
+    display: flex;
+}
+
+.van-nav-bar {
+    height: 2.9375rem;
+    line-height: 2.9375rem;
+}
+
+.van-cell:not(:last-child)::after {
+    right: 16px !important;
+}
+
+// notice-bar 全局修改样式
+div {
+    .van-notice-bar {
+        height: 28px;
+        font-size: 0.75rem;
+    }
+}
+
+// 定制van-grid样式
+.van-grid {
+    .van-grid-item {
+        .van-grid-item__content {
+            background-color: transparent;
+        }
+    }
+
+    .van-grid-item__content::after {
+        border-width: 0;
+    }
+}
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    /*添加底部适配*/
+
+    /*增加头部适配层*/
+    .has-topbar {
+        height: 100%;
+        box-sizing: border-box;
+        padding-top: 44px;
+    }
+    .has-topbar:before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 44px;
+        background-color: #000000;
+        z-index: 9998;
+    }
+}
+// tab panel page下 切换样式 || tab内容  || van-cell-group
+.page {
+    .van-tabs__wrap {
+        .van-tabs__nav {
+            background-color: transparent;
+            z-index: 0;
+            .van-tabs__line {
+                background: linear-gradient(315deg, rgba(251, 88, 112, 1) 0%, rgba(251, 143, 96, 1) 100%);
+            }
+        }
+    }
+
+    .van-tabs__content {
+        padding: 1.25rem 1rem;
+    }
+
+    // 列表
+    &.page-no-radius {
+        .van-cell-group {
+            border-radius: 0;
+        }
+    }
+
+    .panel-item,
+    .van-cell-group {
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0px 10px 20px 8px rgba(119, 83, 83, 0.07);
+        border-radius: 8px;
+        overflow: hidden;
+
+        // &:last-child {
+        //     box-shadow: 0px 10px 20px 8px #ffffff;
+        // }
+
+        & + .panel-item {
+            margin-top: 0.5rem;
+        }
+        & + .van-cell-group {
+            margin-top: 0.5rem;
+        }
+
+        &.panel-title {
+            .van-cell__title {
+                color: @brand-gray-dark;
+                font-weight: bold;
+            }
+        }
+
+        &.panel-info {
+            .van-panel__header-value {
+                color: @brand-info;
+            }
+        }
+        &.panel-primary {
+            .van-panel__header-value {
+                color: @brand-primary;
+            }
+        }
+        &.panel-success {
+            .van-panel__header-value {
+                color: @brand-success;
+            }
+        }
+        &.panel-gray {
+            .van-panel__header-value {
+                color: @brand-gray;
+            }
+        }
+
+        .van-panel__content {
+            padding: 0 1rem;
+        }
+
+        .prod-item {
+            position: relative;
+            display: flex;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            .prod-content {
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+                // justify-content: space-between;
+                min-width: 0;
+                min-height: 0.675rem;
+                margin-left: 8px;
+
+                h4 {
+                    margin: 0;
+                    color: #60656e;
+                    line-height: 3.2rem;
+                    font-size: 0.875rem;
+                    .text-ellipsis(2);
+                }
+                p {
+                    margin: 0;
+                    color: #60656e;
+                    line-height: 1.5rem;
+                    font-size: 0.75rem;
+                    .text-ellipsis(1);
+                }
+
+                .desc-bar {
+                    display: flex;
+                    line-height: 1.5rem;
+                    font-size: 0.75rem;
+                    justify-content: space-between;
+                    span {
+                        min-width: 25px;
+                        .text-ellipsis(1);
+                        &:first {
+                            flex: 1;
+                        }
+                    }
+                    .time {
+                        margin-left: 0.5rem;
+                        text-align: right;
+                    }
+                }
+            }
+
+            & + .prod-item {
+                .border();
+            }
+
+            .van-card {
+                padding: 8px 0;
+            }
+        }
+
+        /***van-cell start***/
+        .van-cell {
+            align-items: center;
+
+            .van-cell__title {
+                font-size: 0.75rem;
+                p {
+                    margin: 0;
+                    position: relative;
+                }
+                .icon {
+                    position: relative;
+                    width: 1rem;
+                    height: 1rem;
+                    &.icon-done {
+                        position: absolute;
+                        background-image: url("../../assets/images/refund/icon-done@2x.png");
+                        background-image: image-set(
+                            url("../../assets/images/refund/icon-done.png") 2x,
+                            url("../../assets/images/refund/icon-done@2x.png") 3x
+                        );
+                        background-repeat: no-repeat;
+                        background-size: 100% 100%;
+                        width: 1.6rem;
+                        height: 1.6rem;
+                    }
+                    &.icon-cancel {
+                        position: absolute;
+                        background-image: url("../../assets/images/refund/icon-cancel@2x.png");
+                        background-image: image-set(
+                            url("../../assets/images/refund/icon-cancel.png") 2x,
+                            url("../../assets/images/refund/icon-cancel@2x.png") 3x
+                        );
+                        background-repeat: no-repeat;
+                        background-size: 100% 100%;
+                        width: 1.6rem;
+                        height: 1.6rem;
+                    }
+                    &.icon-wait {
+                        position: absolute;
+                        background-image: url("../../assets/images/refund/icon-wait@2x.png");
+                        background-image: image-set(
+                            url("../../assets/images/refund/icon-wait.png") 2x,
+                            url("../../assets/images/refund/icon-wait@2x.png") 3x
+                        );
+                        background-repeat: no-repeat;
+                        background-size: 100% 100%;
+                        width: 1.6rem;
+                        height: 1.6rem;
+                    }
+                    &.icon-express {
+                        position: absolute;
+                        top: 0.35rem;
+                        background-image: url("../../assets/images/refund/icon-express@2x.png");
+                        background-image: image-set(
+                            url("../../assets/images/refund/icon-express.png") 2x,
+                            url("../../assets/images/refund/icon-express@2x.png") 3x
+                        );
+                        background-repeat: no-repeat;
+                        background-size: 100% 100%;
+                        width: 1.6rem;
+                        height: 1rem;
+                    }
+                    &.icon-take {
+                        position: absolute;
+                        top: 0.35rem;
+                        background-image: url("../../assets/images/refund/icon-take@2x.png");
+                        background-image: image-set(
+                            url("../../assets/images/refund/icon-take.png") 2x,
+                            url("../../assets/images/refund/icon-take@2x.png") 3x
+                        );
+                        background-repeat: no-repeat;
+                        background-size: 100% 100%;
+                        width: 1.6rem;
+                        height: 1.6rem;
+                    }
+                }
+            }
+        }
+        .van-cell__value {
+            flex: 2;
+            font-size: 0.75rem;
+            .van-button {
+                & + .van-button {
+                    margin-left: 0.5rem;
+                }
+            }
+
+            .content {
+                margin-left: 0.675rem;
+                overflow: hidden;
+
+                .top-bar {
+                    display: flex;
+                    justify-content: space-between;
+                    span {
+                        flex: 1;
+                        width: 100rem;
+
+                        .text-ellipsis(1);
+                    }
+                    .time {
+                        margin-left: 0.5rem;
+                        text-align: right;
+                    }
+                }
+            }
+        }
+
+        .van-field {
+            .van-field__value {
+                background: rgba(250, 250, 250, 1);
+                padding: 0.675rem;
+                border-radius: 8px;
+            }
+        }
+
+        /***end**/
+
+        // 图片上传
+        .uploader-container {
+            margin-left: 1rem;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+            padding: 8px 8px 0 8px;
+            background-color: #fafafa;
+            border-radius: 8px;
+
+            .van-uploader__upload {
+                border: 1px dashed #ebedf0;
+            }
+        }
+        // 下拉板
+        .van-collapse-item__content {
+            padding: 0;
+        }
+
+        .van-panel__header {
+            .van-cell__left-icon {
+                img {
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        .van-panel__footer {
+            padding: 0;
+
+            .van-cell__title {
+                flex: 2;
+            }
+
+            .van-cell__title,
+            .van-cell__value,
+            .van-icon {
+                color: @brand-gray;
+                font-size: 0.75rem;
+            }
+        }
+        .van-button--mini {
+            height: 24px;
+            padding: 0 5px;
+            line-height: 22px;
+        }
+
+        .button-group {
+            padding: 0 1rem 1rem 1rem;
+            text-align: right;
+            .van-button--mini {
+                &.van-button--mini {
+                    margin-left: 0.225rem;
+                }
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+        }
+
+        // 上拉菜单样式重置
+        .van-popup {
+            .van-action-sheet__header {
+                .van-icon-cross {
+                    display: none;
+                }
+            }
+            .van-action-sheet__content {
+                .van-cell-group {
+                    box-shadow: unset;
+                }
+                .van-cell {
+                    &:not(:last-child)::after {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
