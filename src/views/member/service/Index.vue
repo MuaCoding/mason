@@ -1,7 +1,8 @@
 <template>
     <div class="page">
-        <header-bar title="售后管理" :border="true" :back="1" :isIos="iosShow"></header-bar>
-        <van-tabs v-model="active" :border="false" @change="onChange">
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="售后管理" :border="true" :back="1" :isIos="iosShow" :heights="heights"></header-bar>
+        <van-tabs class="content" v-model="active" :border="false" @change="onChange">
             <van-tab title="所有售后">
                 <van-list v-model="possess.loading" :finished="possess.finished" finished-text="没有更多了" @load="onLoad">
                     <service-list :active="active" :list="possess.list"></service-list>
@@ -113,21 +114,25 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
+            let content = document.querySelector(".content");
+
+            if (!this.$apps.isAndroid()) {
                 let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    content.style.paddingTop = 47 + "px";
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
-                    // let ordeftabs = document.querySelector(".index-tab");
+                    console.log(content);
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    content.style.paddingTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {
                 this.heights = 0;
+                content.style.marginTop = 47 + "px";
                 this.iosShow = false;
             }
         });

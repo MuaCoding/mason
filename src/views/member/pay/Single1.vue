@@ -1,8 +1,9 @@
 <template>
     <div>
-        <header-bar title="订单支付" :back="-1" :isIos="iosShow"></header-bar>
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="订单支付" :back="-1" :isIos="iosShow" :heights="heights"></header-bar>
 
-        <div class="py-5 text-center text-danger fs-14">
+        <div class="my-5 text-center address text-danger fs-14" :data-top="height">
             ￥<span class="fs-24">{{ data.prices[0] || "0" }}</span
             >.{{ data.prices[1] || "00" }}
         </div>
@@ -80,6 +81,7 @@ export default {
         return {
             iosShow: false,
             heights: 0,
+            height: 67,
             payBtnDisabled: true,
             payBtnLoading: true,
             payFormShow: false,
@@ -345,24 +347,33 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
+            let content = document.querySelector(".text-center");
+
+            if (!this.$apps.isAndroid()) {
                 let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    content.style.paddingTop = 47 + "px";
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
-                    // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    this.height = content.style.marginTop = Number(this.heights) + 47;
+                    content.style.paddingTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {
                 this.heights = 0;
+                content.style.paddingTop = 47 + "px";
                 this.iosShow = false;
             }
         });
+    },
+    watch: {
+        height(val) {
+            return val;
+        },
     },
 };
 </script>

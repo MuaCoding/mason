@@ -37,6 +37,7 @@ export default new Vuex.Store({
         SET_LOCALSTORAGE(state, value) {
             if (typeof JSON.parse(value) == "object") {
                 let payload = JSON.parse(value);
+                console.log(value)
                 sessionStorage.setItem(payload.name, payload.value);
             }
             state.tabBarValue = sessionStorage.getItem(state.ORDERBAR);
@@ -45,7 +46,7 @@ export default new Vuex.Store({
             state.fromApp = sessionStorage.getItem(state.FROMAPP);
         },
         REMOVE_LOCALSTORAGE() {
-            sessionStorage.removeItem(ORDERBAR);
+            sessionStorage.removeItem('ORDERBAR');
         },
     },
     actions: {

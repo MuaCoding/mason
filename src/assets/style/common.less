@@ -17,11 +17,6 @@
     display: flex;
 }
 
-.van-nav-bar {
-    height: 2.9375rem;
-    line-height: 2.9375rem;
-}
-
 .van-cell:not(:last-child)::after {
     right: 16px !important;
 }
@@ -46,6 +41,64 @@ div {
         border-width: 0;
     }
 }
+
+.van-tabbar {
+    z-index: 200;
+}
+.van-address-list__bottom {
+    bottom: constant(safe-area-inset-bottom);
+    bottom: env(safe-area-inset-bottom);
+}
+/* 
+* 解决iOS头部top 被重置的问题
+*/
+.van-nav-bar[data-top="20"] {
+    top: 20px;
+}
+.van-nav-bar[data-top="42"] {
+    top: 42px;
+}
+.van-nav-bar[data-top="44"] {
+    top: 44px;
+}
+
+.address[data-top="67"] {
+    margin-top: 67px;
+}
+
+.address[data-top="47"] {
+    margin-top: 47px;
+}
+
+.headIos {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    background: #fff;
+}
+
+// .header-bar {
+//     height: 2.9375rem;
+//     /deep/.van-nav-bar {
+//         // z-index: 4;
+//         // top: constant(safe-area-inset-top);
+//         // top: env(safe-area-inset-top);
+//     }
+
+//     /deep/ .van-nav-bar--fixed {
+//         position: fixed;
+//         background: #fff;
+//         z-index: 999;
+//         // padding-top: 0 !important;
+//         // top: 20px;
+//     }
+// }
+
+/* 
+* 解决iOS头部top 被重置的问题 end
+*/
 
 @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
     /*添加底部适配*/
@@ -80,7 +133,7 @@ div {
     }
 
     .van-tabs__content {
-        padding: 1.25rem 1rem;
+        padding: 1rem;
     }
 
     // 列表

@@ -1,6 +1,7 @@
 <template>
     <div class="page">
-        <header-bar title="售后详情" :border="false" :back="-1" :isIos="iosShow"></header-bar>
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="售后详情" :border="false" :back="-1" :isIos="iosShow" :heights="heights"></header-bar>
         <div class="wrapper list-group">
             <h3>{{ list.status_name }}</h3>
             <!-- 管理详情状态 -->
@@ -201,17 +202,16 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
+            if (!this.$apps.content()) {
                 let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
+                let wrap = document.querySelector(".wrapper");
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
                     // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    wrap.style.marginTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {

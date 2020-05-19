@@ -160,13 +160,15 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp()&&window.ios != undefined) {
+            if (!this.$apps.isAndroid()) {
                 let head = document.querySelector(".search-box");
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    return;
                 } else {
-                    let search = document.querySelector(".search-content");
-                    head.style.marginTop = Number(this.heights) + "px";
+                    head.style.paddingTop = Number(this.heights) + 10 + "px";
                     this.iosShow = true;
                 }
             } else {

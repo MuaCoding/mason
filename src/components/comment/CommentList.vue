@@ -77,6 +77,7 @@ export default {
             size: 10,
             page: 1,
             isActive: false,
+            current: 0,
         };
     },
     created() {
@@ -85,15 +86,17 @@ export default {
     mounted() {},
     methods: {
         onLoad() {
-            this.fetchData();
+            let page = 0;
+            page = this.current + 1;
+            this.fetchData(page);
         },
         goto(item, route) {
             this.$router.push("/member/comment/" + route + "/" + item.id);
         },
-        fetchData() {
+        fetchData(page) {
             try {
                 let formdata = {
-                    page: this.current,
+                    page: page,
                     limit: this.size,
                 };
                 this.$apps.http

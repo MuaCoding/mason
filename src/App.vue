@@ -3,7 +3,6 @@
         <transition :name="transitionName">
             <keep-alive>
                 <!-- :key="routeKey" -->
-
                 <router-view v-if="$route.meta.keepAlive" class="router-view" />
                 <router-view :key="routeKey" v-else class="router-view" />
             </keep-alive>
@@ -26,15 +25,17 @@ export default {
         Loading,
     },
     created() {
-        if (this.$route.params.from_id) {
+        if (this.$apps.GetQueryValue("from_app")) {
             this.$store.dispatch(
                 "SET_LOCALSTORAGE",
                 JSON.stringify({
                     name: "FROMAPP",
-                    value: this.$route.params.from_id,
+                    value: this.$apps.GetQueryValue("from_app") || "",
                 })
             );
         }
+
+        this.$store.dispatch("REMOVE_LOCALSTORAGE");
     },
     watch: {
         $route(to, from) {

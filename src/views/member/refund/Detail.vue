@@ -1,6 +1,7 @@
 <template>
     <div class="page">
-        <header-bar title="退款详情" :border="false" :isIos="iosShow" :class="'bg-nav-bar'" :back="-1"></header-bar>
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="退款详情" :border="false" :isIos="iosShow" :class="'bg-nav-bar'" :heights="heights" :back="-1"></header-bar>
         <div class="wrapper refund-wrap">
             <h3>{{ list.status_name }}</h3>
             <!-- 管理详情状态 -->
@@ -258,17 +259,18 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
+            if (!this.$apps.isAndroid()) {
                 let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
+                let content = document.querySelector(".refund-wrap");
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    content.style.marginTop = 47 + "px";
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
-                    // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    content.style.marginTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {

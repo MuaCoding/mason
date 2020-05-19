@@ -36,34 +36,36 @@
                             <div class="list-cell">
                                 <h4 class="pull-title">{{ item.name }}</h4>
                                 <p class="list-meta text-gray fs-12">
-                                    <span style="text-decoration:line-through"
-                                        >原价：¥{{ item.sku.original_price | NumberFormat(item.sku.original_price) }}</span
+                                    <span style="text-decoration: line-through;"
+                                        >原价：¥{{ item.sku.zero_buy_line_price | NumberFormat(item.sku.zero_buy_line_price) }}</span
                                     >
                                     <span class="placeholder"></span>
                                     <span class="list-meta-r">{{ item.sale_nums }}人领取</span>
                                 </p>
                                 <div class="list-meta mt-2">
-                                    <div class="list-meta-l  text-price">
+                                    <div class="list-meta-l text-price">
                                         <span class="">¥ </span>
                                         <span class="fs-16 strong"> {{ item.sku.activity_price | NumberFormat(item.sku.activity_price) }}</span>
                                     </div>
                                 </div>
                                 <div class="list-meta search-tags">
-                                    <van-tag color="#EEEEEE" text-color="#666666" @click="$router.push('/goods/' + item.id)">免费领取</van-tag>
-                                    <van-tag color="#D53329" text-color="#FFFFFF" style="margin-left: 0.625rem;" @click="onShare(item)"
+                                    <van-tag color="#EEEEEE" text-color="#666666" size="large" @click="$router.push('/goods/' + item.id)"
+                                        >免费领取</van-tag
+                                    >
+                                    <van-tag color="#D53329" text-color="#FFFFFF" size="large" style="margin-left: 0.625rem;" @click="onShare(item)"
                                         >分享好友</van-tag
                                     >
                                 </div>
                             </div>
                         </div>
-                        <div v-if="result.list.length == 0" style="color:#A0A9B5;text-align:center;padding: 1rem 0;">暂无数据</div>
+                        <div v-if="result.list.length == 0" style="color: #a0a9b5; text-align: center; padding: 1rem 0;">暂无数据</div>
                     </div>
                 </van-list>
             </div>
         </div>
         <!--分享图片弹窗-->
         <van-dialog
-            v-model="payload.shareWindow"
+            v-model="shareWindow"
             :close-on-click-overlay="true"
             :show-cancel-button="false"
             :show-confirm-button="false"
@@ -75,9 +77,9 @@
                 <van-image fit="cover" class="w-100" :src="payload.share_img" />
             </div>
         </van-dialog>
-        <!--分享图片-->
-        <div v-if="payload.master_image" class="canvas-container1" id="canvas-container1" ref="shareContainer">
-            <div class="w-100" style="height: 320px">
+        <!--分享图片 -->
+        <div v-if="payload.qrcode" class="canvas-container1" id="canvas-container1" ref="shareContainer">
+            <div class="w-100" style="height: 320px;">
                 <van-image fit="cover" :width="320" :height="320" class="share-goods-images" :src="payload.goods_master_img" />
             </div>
             <div class="px-3 mt-3 fs-14 text-33">
@@ -85,51 +87,61 @@
             </div>
             <template v-if="payload.buy_score > 0">
                 <div class="px-3 mt-2 text-66 fs-12">
-                    <span class="envelope-span"
+                    <!-- <span class="envelope-span"
                         >赠
                         {{
                             payload.award_multiple
                                 | formatScore(payload.sku.price, payload.sku.activity_price, payload.sku.activity_is, payload.sku.activity_nums)
                         }}
-                        <img class="align-middle" style="height: 12px" src="/img/envelope.png"
-                    /></span>
+                        <img class="align-middle" style="height: 12px;" src="/img/envelope.png"
+                    /></span> -->
                 </div>
                 <van-row class="px-3 pb-3 mt-2">
                     <van-col span="12">
-                        <span class="fs-12 discount-span">购物分抵扣 ￥{{ payload.sku.buy_score }}</span>
+                        <span style="text-decoration: line-through;" class="fs-12 discount-span"
+                            >原价：¥{{ item.sku.zero_buy_line_price | NumberFormat(payload.sku.zero_buy_line_price) }}</span
+                        >
                     </van-col>
                     <van-col span="12" class="fs-12 text-right text-danger">
-                        <template v-if="payload.sku.activity_is == 1">
+                        <span>{{ payload.sale_nums }}人领取</span>
+                        <!-- <template v-if="payload.sku.activity_is == 1">
                             ￥<strong class="fs-14"
                                 >{{ payload.sku.promotion_prices[0] || "0" }}.{{ payload.sku.promotion_prices[1] || "00" }}</strong
                             >
                         </template>
                         <template v-else>
                             ￥<strong class="fs-14">{{ payload.sku.prices[0] || "0" }}.{{ payload.sku.prices[1] || "00" }}</strong>
-                        </template>
+                        </template> -->
                     </van-col>
                 </van-row>
             </template>
             <template v-else>
-                <van-row class="px-3 pb-3 mt-3">
+                <van-row class="px-3 mt-3">
                     <van-col span="12" class="text-66 fs-12">
-                        <span class="envelope-span"
+                        <span style="text-decoration: line-through;" class="fs-12 discount-span"
+                            >原价：¥{{ payload.sku.zero_buy_line_price | NumberFormat(payload.sku.zero_buy_line_price) }}</span
+                        >
+                        <!-- <span class="envelope-span"
                             >赠
                             {{
                                 payload.award_multiple
                                     | formatScore(payload.sku.price, payload.sku.activity_price, payload.sku.activity_is, payload.sku.activity_nums)
                             }}
-                            <img class="align-middle" style="height: 12px" src="/img/envelope.png"
-                        /></span>
+                            <img class="align-middle" style="height: 12px;" src="/img/envelope.png"
+                        /></span> -->
                     </van-col>
-                    <van-col span="12" class="fs-12 text-right text-danger">
-                        ￥<strong class="fs-14">{{ payload.sku.prices[0] || "0" }}.{{ payload.sku.prices[1] || "00" }}</strong>
+                    <van-col span="12" class="fs-12 text-right">
+                        <span>{{ payload.sale_nums }}人领取</span>
                     </van-col>
                 </van-row>
+                <div class="px-3 pt-2 pb-3 fs-14 text-danger">
+                    <span class="">¥ </span>
+                    <span class="fs-16 strong"> {{ payload.sku.activity_price | NumberFormat(payload.sku.activity_price) }}</span>
+                </div>
             </template>
 
             <div class="px-3">
-                <van-row class="py-3 px-1" style="border-top: 1px dashed #f0f0f0">
+                <van-row class="py-3 px-1" style="border-top: 1px dashed #f0f0f0;">
                     <van-col span="7">
                         <van-image width="70" :src="payload.qrcode" />
                     </van-col>
@@ -169,6 +181,7 @@ export default {
                 goods_master_img: "",
                 prices: [],
             },
+            element: null,
         };
     },
     components: {
@@ -180,13 +193,15 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp()) {
+            if (!this.$apps.isAndroid()) {
                 let head = document.querySelector(".header-box"),
                     active = document.querySelector(".active-box");
-                console.log(active);
 
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    return;
                 } else {
                     head.style.top = Number(this.heights) + "px";
                     this.iosShow = true;
@@ -199,7 +214,6 @@ export default {
     },
     methods: {
         onLoad() {
-            console.log("onLoad");
             this.getData();
         },
         // 获取免费商品
@@ -250,7 +264,7 @@ export default {
             const xhr = new XMLHttpRequest();
             xhr.open("get", url, true);
             xhr.responseType = "blob";
-            xhr.onload = function() {
+            xhr.onload = function () {
                 if (this.status == 200) {
                     e.goods_master_img = URL.createObjectURL(this.response);
                 }
@@ -259,52 +273,63 @@ export default {
         },
         async onShare(item) {
             this.payload = item;
+
+            console.log(this.payload);
             // this.$set(this, "payload", item);
             this.payload.share_url = window.location.protocol + "//" + window.location.host + "/goods/" + item.id + "/" + item.user_id;
             let res = await this.createQrcode(this.payload.share_url);
+
             this.$nextTick(() => {
                 this.$set(this.payload, "qrcode", res);
                 setTimeout(() => {
+                    console.log("--**-");
+                    this.element = this.$refs.shareContainer;
                     this.shareHandle(); //图片生成
-                }, 1);
+                }, 100);
             });
         },
+        // 处理分享图片生成
         shareHandle() {
-            console.log("****");
-
             if (this.payload.disabledShare) return false;
             // this.payload.qrcode = this.result.qrcode;
+            // console.log();
 
             // this.result.share_img = this.payload.share_img;
             if (this.payload.share_img) {
-                console.log("***");
-                this.payload.shareWindow = true;
+                console.log("----");
+                this.shareWindow = true;
                 onShare(this.payload, this.payload.sku);
             } else {
                 this.saverImg();
             }
         },
         async saverImg() {
-            let _this = this;
-            this.$toast.loading("图片生成中...");
-            await html2canvas(document.getElementById("canvas-container1"), {
-                y: -10000,
-                x: -10000,
-                useCORS: true, // 【重要】开启跨域配置
-                allowTaint: true, //允许跨域图片
-                taintTest: false, //是否在渲染前测试图片
-                backgroundColor: null,
-                scale: window.devicePixelRatio * 2,
-            })
-                .then((img) => {
-                    this.$toast.clear();
-                    _this.$set(this.payload, "shareWindow", true);
-                    _this.payload.share_img = img.toDataURL();
-                    onShare(_this.payload, _this.payload.sku);
+            try {
+                let _this = this;
+                this.$toast.loading("图片生成中...");
+                await html2canvas(this.element, {
+                    // y: -10000,
+                    // x: -10000,
+                    useCORS: true, // 【重要】开启跨域配置
+                    allowTaint: true, //允许跨域图片
+                    taintTest: false, //是否在渲染前测试图片
+                    backgroundColor: "#ffffff",
+                    scale: window.devicePixelRatio * 2,
                 })
-                .catch((err) => {
-                    console.log("error", err);
-                });
+                    .then((img) => {
+                        console.log(img);
+                        this.shareWindow = true;
+                        _this.payload.share_img = img.toDataURL();
+                        // console.log(_this.payload.share_img);
+                        this.$toast.clear();
+                        onShare(_this.payload, _this.payload.sku);
+                    })
+                    .catch((err) => {
+                        console.error("error", err);
+                    });
+            } catch (err) {
+                console.error("err", err);
+            }
         },
         async createQrcode(val) {
             const w = 70,
@@ -323,15 +348,21 @@ export default {
             this.payload.disabledShare = false;
             return canvas.toDataURL("image/png");
         },
+        _vueCloseShare() {
+            this.shareWindow = false;
+        },
         closeShare() {
+            console.log("***关闭分享框");
+            this.payload.qrcode = "";
+            this.shareWindow = false;
             closeShare();
         },
     },
     filters: {
-        formatScore: function(value, amount, acPrice, isAc, num) {
+        formatScore: function (value, amount, acPrice, isAc, num) {
             return parseFloat(value && isAc && num > 0 ? acPrice : amount).toFixed(2);
         },
-        formatFraction: function(value) {
+        formatFraction: function (value) {
             return value ? value.toFixed(2) : "0.00";
         },
         formatPrice(price) {
@@ -343,6 +374,11 @@ export default {
         },
         imageView2(value, w) {
             return value + "?imageView2/1/w/" + w + "/h/" + w + "/interlace/1";
+        },
+    },
+    watch: {
+        shareWindow(newValue, oldValue) {
+            if (!newValue) this.closeShare();
         },
     },
 };
@@ -533,5 +569,9 @@ export default {
             // text-overflow: ellipsis;
         }
     }
+}
+
+#canvas-container {
+    width: 60%;
 }
 </style>

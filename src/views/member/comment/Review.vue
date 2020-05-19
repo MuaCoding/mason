@@ -1,40 +1,43 @@
 <template>
     <div class="page page-no-radius">
-        <header-bar title="发布追评" :border="true" :isIos="iosShow"  :back="-1"></header-bar>
-        <van-cell-group class="discuss-wrap" v-if="list">
-            <van-cell :border="false">
-                <van-image round lazy-load width="2.5rem" height="2.5rem" :src="list.shop.logo || '/'" />
-                <div class="content">
-                    <div class="top-bar">
-                        <span class="strong text-secondary fs-12">{{ list.goods.name }}</span>
-                        <div>
-                            <van-rate
-                                v-model="list.shop.fraction"
-                                readonly
-                                allow-half
-                                color="linear-gradient(140deg,rgba(254,193,36,1) 0%,rgba(251,168,35,1) 100%)"
-                                :size="12"
-                                void-icon="star-o"
-                                void-color="#D8D8D8"
-                            />
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="发布追评" :border="true" :isIos="iosShow" :back="-1" :heights="heights"></header-bar>
+        <van-cell-group class="discuss-wrap">
+            <template v-if="list">
+                <van-cell :border="false">
+                    <van-image round lazy-load width="2.5rem" height="2.5rem" :src="list.shop.logo || '/'" />
+                    <div class="content">
+                        <div class="top-bar">
+                            <span class="strong text-secondary fs-12">{{ list.goods.name }}</span>
+                            <div>
+                                <van-rate
+                                    v-model="list.shop.fraction"
+                                    readonly
+                                    allow-half
+                                    color="linear-gradient(140deg,rgba(254,193,36,1) 0%,rgba(251,168,35,1) 100%)"
+                                    :size="12"
+                                    void-icon="star-o"
+                                    void-color="#D8D8D8"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </van-cell>
+                <div class="prod-list px-3">
+                    <div class="prod-item" @click="goto({ no: item.id }, 'detail')">
+                        <van-image radius="6px" width="4.25rem" height="4.25rem" :src="list.goods.master_image" />
+                        <div class="prod-content">
+                            <p class="text-secondary-dark">名称：{{ list.goods.name }}</p>
+                            <p>
+                                ¥<span class="text-primary fs-14 strong"> {{ list.goods.min_price | NumberFormat(list.goods.min_price) }}</span>
+                            </p>
+                            <div class="desc-bar text-secondary">
+                                <span>{{ list.goods.goods_sku_name }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </van-cell>
-            <div class="prod-list px-3">
-                <div class="prod-item" @click="goto({ no: item.id }, 'detail')">
-                    <van-image radius="6px" width="4.25rem" height="4.25rem" :src="list.goods.master_image" />
-                    <div class="prod-content">
-                        <p class="text-secondary-dark">名称：{{ list.goods.name }}</p>
-                        <p>
-                            ¥<span class="text-primary fs-14 strong"> {{ list.goods.min_price | NumberFormat(list.goods.min_price) }}</span>
-                        </p>
-                        <div class="desc-bar text-secondary">
-                            <span>{{ list.goods.goods_sku_name }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </template>
         </van-cell-group>
         <!-- 追评 -->
         <van-cell-group>
@@ -96,17 +99,18 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
+            if (!this.$apps.isAndroid()) {
                 let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
+                let content = document.querySelector(".discuss-wrap");
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.iosShow = false;
+                    this.heights = 0;
+                    content.style.paddingTop = 47 + "px";
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
-                    // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    content.style.paddingTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {

@@ -1,7 +1,7 @@
 <template>
     <div class="page-goods-detail" id="page-goods-detail">
-        <header-bar :fixed="true" :border="active !== 1" :isIos="iosShow" :back="-1">
-            <!-- <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div> -->
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar :fixed="true" :border="active !== 1" :isIos="iosShow" :back="-1" :heights="heights">
             <van-icon @click="goto('/')" :info="cart_num" name="shopping-cart-o" slot="nav-right"></van-icon>
             <van-tabs v-model="active" @change="changeTab" :border="false" slot="nav-title">
                 <van-tab title="商品"></van-tab>
@@ -221,7 +221,14 @@
                     </van-cell>
                 </van-cell-group>
                 <div class="van-sku-actions mt-3" style="padding: 8px 0">
-                    <van-button square size="large" type="warning" :disabled="btnToCartDisbaled" :loading="btnToCartLoading" @click="btnToCart(0)">
+                    <van-button
+                        square
+                        size="large"
+                        type="warning"
+                        :disabled="btnToCartDisbaled || goods.is_zero_buy == 1"
+                        :loading="btnToCartLoading"
+                        @click="btnToCart(0)"
+                    >
                         加入购物车
                     </van-button>
                     <van-button square size="large" type="danger" :disabled="btnToBuyDisbaled" :loading="btnToBuyLoading" @click="btnToCart(1)">
@@ -236,8 +243,14 @@
                 <van-icon slot="icon" :color="isFav === 1 ? switchColor : ''" :name="isFav === 1 ? 'star' : 'star-o'"></van-icon>
             </van-goods-action-icon>
             <van-goods-action-icon :to="'/shop/' + goods.shop.id" icon="shop-o" text="店铺" />
-            <van-goods-action-button type="warning" text="加入购物车" :disabled="goods.is_zero_buy == 1" @click="onClickButton" />
-            <van-goods-action-button type="danger" text="立即购买" @click="onClickButton" />
+            <van-goods-action-button
+                type="warning"
+                text="加入购物车"
+                :disabled="btnToCartDisbaled || goods.is_zero_buy == 1"
+                @click="onClickSku(0)"
+            />
+            <!-- goods.is_zero_buy == 1 0元购商品 -->
+            <van-goods-action-button type="danger" text="立即购买" @click="onClickSku(1)" />
         </van-goods-action>
         <van-popup v-model="show_query_express_container" position="bottom">
             <van-picker
@@ -463,6 +476,7 @@ export default {
                 window.ios.openCustomerService();
             }
         },
+        // 加入购物车立即购买
         btnToCart(buy) {
             this.setBtnAttr(true);
             this.$apps.http
@@ -516,14 +530,29 @@ export default {
                     Toast.clear();
                 });
         },
-        onClickButton() {
+        onClickSku(buy) {
+            console.log(this.$route.params.invite)
             let redirect = encodeURI(process.env.VUE_APP_BASE_URL + "auth");
-            this.$apps.isLogin()
-                ? this.goods.user_zero_buy_max > 0
-                    ? (this.showSku = true)
-                    : this.$toast("您的购买次数用完了")
-                : (window.location.href = process.env.VUE_APP_ERP_BASE_URL + "login?url=" + redirect + "&invite=" + this.goods.invite_user_id);
+            if (this.goods.is_zero_buy == 1) {
+                this.$apps.isLogin()
+                    ? this.goods.user_zero_buy_max > 0
+                        ? (this.showSku = true)
+                        : this.$toast("您的购买次数用完了")
+                    : (window.location.href =
+                          process.env.VUE_APP_ERP_BASE_URL +
+                          "login?url=" +
+                          redirect +
+                          "&invite=" +
+                          this.$route.params.invite +
+                          "&zero_purchase=" +
+                          1);
+            } else {
+                this.showSku = true;
+            }
         },
+        // 0元购立即购买
+
+        onClickButton() {},
         goto(path) {
             this.$apps.session.set("tabbar", 2);
             this.$router.push(path);
@@ -535,19 +564,6 @@ export default {
         changeTab(index) {
             switch (index) {
                 case 2:
-                    // this.$apps.http.get('/goodsComment', {
-                    //     goods_id: this.sku_id
-                    // }).then(res => {
-                    //     if (res.code === 1) {
-                    //         let d = res.data
-                    //         for (let i in d.list) {
-                    //             d.list[i].rate = parseFloat((parseFloat(d.list[i].service_score) + parseFloat(d.list[i].logistics_score) + parseFloat(d.list[i].descript_score)) / 3)
-                    //         }
-                    //         this.comments = d
-                    //     }
-                    // }).catch(err => {
-
-                    // })
                     if (!this.showComments) this.showComments = true;
                     break;
             }
@@ -682,9 +698,7 @@ export default {
         },
         onShare(goods) {
             if (this.disabledShare) return false;
-            // if (this.$apps.isAndroidApp()) {
-            //     onShare(this.goods, this.sku)
-            // } else {
+
             this.goods.qrcode = this.qrcode;
             this.goods.share_img = this.share_img;
             if (this.share_img) {
@@ -709,6 +723,7 @@ export default {
                 scale: 2,
             })
                 .then((img) => {
+                    console.log(img);
                     Toast.clear();
                     _.shareWindow = true;
                     _.share_img = img.toDataURL();
@@ -766,6 +781,7 @@ export default {
         this.swipeWidth = document.documentElement.clientWidth;
         this.sku_id = this.$route.params.id;
         let invite = this.$route.params.invite;
+
         if (this.GET_FROMAPP) {
             this.isApp = false;
         }
@@ -914,24 +930,29 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
-                let head = document.querySelector(".van-nav-bar--fixed"),
+            let content = document.querySelector(".detail-box");
+
+            if (!this.$apps.isAndroid()) {
+                let head = document.querySelector(".van-nav-bar"),
                     downloadApp = document.querySelector(".download-app-go");
+
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    content.style.paddingTop = Number(head.offsetHeight) + "px";
+                    return;
                 } else {
-                    let detail = document.querySelector(".detail-box");
-                    console.log(detail);
-                    detail.style.paddingTop = Number(this.heights) + "px";
+                    content.style.paddingTop = Number(this.heights) + Number(head.offsetHeight) + "px";
                     head.style.top = Number(this.heights) + "px";
                     downloadApp.style.top = Number(this.heights) + "px";
                     this.iosShow = true;
                 }
             } else {
+                content.style.paddingTop = 47 + "px";
                 this.heights = 0;
                 this.iosShow = false;
             }
-            console.log(this.iosShow);
         });
     },
     watch: {
@@ -998,6 +1019,7 @@ export default {
     transition: unset;
     background: #fff;
 }
+
 .share-goods-images img {
     height: 320px;
     width: 320px;
@@ -1025,7 +1047,7 @@ export default {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 99;
+    z-index: 999;
     background: rgba(0, 0, 0, 0.8);
     color: #ffffff;
     display: flex;

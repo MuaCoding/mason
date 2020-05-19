@@ -1,9 +1,10 @@
 <template>
     <div>
-        <header-bar title="收货地址" :back="-1" :isIos="iosShow">
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="收货地址" :back="-1" :heights="heights">
             <van-icon name="delete" @click="btnDelete" slot="nav-right"></van-icon>
         </header-bar>
-        <div>
+        <div class="address" :data-top="height">
             <van-address-list
                 v-model="chosenAddressId"
                 :list="list"
@@ -36,6 +37,7 @@ export default {
         return {
             iosShow: false,
             heights: 0,
+            height: 0,
             chosenAddressId: 0,
             list: [],
             index: "",
@@ -118,24 +120,38 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
-                let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
+            let content = document.querySelector(".address");
+            if (!this.$apps.isAndroid()) {
+                let head = document.querySelector(".van-nav-bar");
+
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.iosShow = false;
+                    this.heights = 0;
+                    content.style.marginTop = 47 + "px";
+                    this.height = 47;
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
-                    // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    this.height = content.style.marginTop = Number(this.heights) + 47;
+                    content.style.marginTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {
                 this.heights = 0;
+                this.height = 47;
+                content.style.marginTop = 47 + "px";
                 this.iosShow = false;
             }
         });
+    },
+
+    watch: {
+        height(val) {
+            console.log(val);
+            // this.height = val;
+            return val;
+        },
     },
 };
 </script>

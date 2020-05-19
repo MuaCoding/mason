@@ -1,7 +1,8 @@
 <template>
     <div class="page page-no-radius">
-        <header-bar title="申诉" :border="false" :back="-1" :isIos="iosShow"></header-bar>
-        <van-cell-group>
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="申诉" :border="false" :back="-1" :isIos="iosShow" :heights="heights"></header-bar>
+        <van-cell-group class="apply">
             <van-cell :border="true">
                 <template #title><span class=" text-secondary-dark">申诉类型</span></template></van-cell
             >
@@ -72,21 +73,24 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
+            let content = document.querySelector(".apply");
+
+            if (!this.$apps.isAndroid()) {
                 let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    content.style.marginTop = 47 + "px";
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
-                    // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    content.style.marginTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {
                 this.heights = 0;
+                content.style.marginTop = 47 + "px";
                 this.iosShow = false;
             }
         });

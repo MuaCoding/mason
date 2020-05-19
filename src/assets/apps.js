@@ -88,19 +88,22 @@ const apps = {
         },
         upload(params) {
             return new Promise((resolve, reject) => {
-                let files = new FormData();
-                files.append("file", params.file);
-
-                http.post("/Upload/image", files, {
-                    headers: { "Content-Type": "multipart/form-data" },
-                }).then(
-                    (res) => {
-                        resolve(res);
-                    },
-                    (err) => {
-                        reject(err);
-                    }
-                );
+                let formData = new FormData();
+                try {
+                    formData.append("file", params.file);
+                    http.post("/Upload/image", formData, {
+                        headers: { "Content-Type": "multipart/form-data" },
+                    }).then(
+                        (res) => {
+                            resolve(res);
+                        },
+                        (err) => {
+                            reject(err);
+                        }
+                    );
+                } catch (err) {
+                    console.error("err", err);
+                }
             });
         },
     },
@@ -218,6 +221,21 @@ const apps = {
         return navigator.userAgent.indexOf("QQ/") > -1;
         //  MQQBrowser QQ浏览器 Mobile 手机端
     },
+    GetQueryValue(queryName) {
+        /**
+         * [通过参数名获取url中的参数值]
+         * 示例URL:http://htmlJsTest/getrequest.html?uid=admin&rid=1&fid=2&name=小明
+         * @param  {[string]} queryName [参数名]
+         * @return {[string]}           [参数值]
+         */
+        var reg = new RegExp("(^|&)" + queryName + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return decodeURI(r[2]);
+        } else {
+            return null;
+        }
+    },
 };
 
 // http.defaults.baseURL = window.location.host.indexOf("greendg.cn") > -1 ? process.env.VUE_APP_BASE_API1 : process.env.VUE_APP_BASE_API;
@@ -226,6 +244,7 @@ http.interceptors.request.use((config) => {
     let sessionId = apps.session.get("sessionid") ? apps.session.get("sessionid") : localStorage.getItem("sessionid"),
         sign = "",
         params = {};
+    params.source_type = apps.GetQueryValue("source_type") || "";
     params.request_time = new Date().valueOf();
     params.request_str = apps.randStr();
     params.lang = localStorage.getItem("lang");
@@ -235,7 +254,7 @@ http.interceptors.request.use((config) => {
         } else {
             config.params = params;
         }
-        sign = apps.genrationSign(config.params);
+        // sign = apps.genrationSign(config.params);
     } else if (config.method === "post" || config.method === "put") {
         if (config.data !== null && config.data !== undefined) {
             config.data = Object.assign(config.data, params);
@@ -249,13 +268,13 @@ http.interceptors.request.use((config) => {
             config.params = params;
         }
 
-        sign = apps.genrationSign(config.data);
+        // sign = apps.genrationSign(config.data);
     }
 
     config.headers = {
         ssid: sessionId ? sessionId : apps.randStr(),
     };
-    
+
     return config;
 });
 

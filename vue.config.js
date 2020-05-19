@@ -14,22 +14,22 @@ module.exports = {
     lintOnSave: false,
     assetsDir: "assets",
     filenameHashing: true,
-    css: {
-        // 是否开启支持 foo.module.css 样式
-        // modules: false,
-        // 是否使用 css 分离插件 ExtractTextPlugin，采用独立样式文件载入，不采用 <style> 方式内联至 html 文件中
-        extract: true,
-        loaderOptions: {
-            css: {
-                // 这里的选项会传递给 css-loader
-                importLoaders: 1,
-            },
-            less: {
-                // 这里的选项会传递给 postcss-loader
-                importLoaders: 1,
-            },
-        },
-    },
+    // css: {
+    //     // 是否开启支持 foo.module.css 样式
+    //     // modules: false,
+    //     // 是否使用 css 分离插件 ExtractTextPlugin，采用独立样式文件载入，不采用 <style> 方式内联至 html 文件中
+    //     extract: true,
+    //     loaderOptions: {
+    //         css: {
+    //             // 这里的选项会传递给 css-loader
+    //             importLoaders: 1,
+    //         },
+    //         less: {
+    //             // 这里的选项会传递给 postcss-loader
+    //             importLoaders: 1,
+    //         },
+    //     },
+    // },
     devServer: {
         proxy: {
             "/api": {
@@ -48,44 +48,44 @@ module.exports = {
     chainWebpack: (config) => {
         config.resolve.symlinks(true); // 修复热更新失效
         // 静态图片压缩
-        config.module
-            .rule("images")
-            .use("image-webpack-loader")
-            .loader("image-webpack-loader")
-            .options({
-                bypassOnDebug: true,
-            })
-            .end();
+        // config.module
+        //     .rule("images")
+        //     .use("image-webpack-loader")
+        //     .loader("image-webpack-loader")
+        //     .options({
+        //         bypassOnDebug: true,
+        //     })
+        //     .end();
     },
     configureWebpack: (config) => {
         if (process.env.NODE_ENV == "production") {
             // 为生产环境修改配置
             config.mode = "production";
             // 将每个依赖包打包成单独的js文件
-            let optimization = {
-                minimizer: [
-                    new UglifyPlugin({
-                        uglifyOptions: {
-                            warnings: false,
-                            compress: {
-                                drop_console: true,
-                                drop_debugger: false,
-                                pure_funcs: ["console.log"],
-                            },
-                        },
-                    }),
-                ],
-            };
-            Object.assign(config, {
-                optimization,
-            });
-        } else if(process.env.NODE_ENV == "testing") {
+            // let optimization = {
+            //     minimizer: [
+            //         new UglifyPlugin({
+            //             uglifyOptions: {
+            //                 warnings: false,
+            //                 compress: {
+            //                     drop_console: true,
+            //                     drop_debugger: false,
+            //                     pure_funcs: ["console.log"],
+            //                 },
+            //             },
+            //         }),
+            //     ],
+            // };
+            // Object.assign(config, {
+            //     optimization,
+            // });
+        } else if (process.env.NODE_ENV == "testing") {
             config.mode = "development";
         } else {
             // 为开发环境修改配置
             config.mode = "development";
         }
-        console.log(process.env.NODE_ENV)
+        console.log(process.env.NODE_ENV);
     },
     pluginOptions: {
         "style-resources-loader": {

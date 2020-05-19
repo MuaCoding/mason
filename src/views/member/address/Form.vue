@@ -1,7 +1,8 @@
 <template>
     <div>
-        <header-bar :title="title" :border="false" :back="-1" :isIos="iosShow"></header-bar>
-        <div>
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar :title="title" :border="false" :back="-1" :isIos="iosShow" :heights="heights"></header-bar>
+        <div class="content">
             <van-cell-group>
                 <van-field label="姓名" v-model="form.name" placeholder="请输入收件人姓名" />
                 <van-field label="手机号码" v-model="form.mobile" placeholder="请输入收件人联系电话" />
@@ -50,6 +51,8 @@ export default {
     },
     data() {
         return {
+            iosShow: false,
+            heights: 0,
             form: {
                 name: "",
                 mobile: "",
@@ -214,18 +217,24 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
-                let head = document.querySelector(".van-nav-bar--fixed");
+            let content = document.querySelector(".content");
+            if (!this.$apps.isAndroid()) {
+                let head = document.querySelector(".van-nav-bar");
+
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.iosShow = false;
+                    this.heights = 0;
+                    content.style.paddingTop = 47 + "px";
+                    return;
                 } else {
-                    let content = document.querySelector(".row-box");
                     head.style.top = Number(this.heights) + "px";
-                    content.style.paddingTop = Number(this.heights) + "px";
+                    content.style.paddingTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {
                 this.heights = 0;
+                content.style.paddingTop = 47 + "px";
                 this.iosShow = false;
             }
             console.log(this.iosShow);

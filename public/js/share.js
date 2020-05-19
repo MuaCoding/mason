@@ -37,7 +37,7 @@ function onShare(goods, sku) {
             sku: sku,
             // save_img: goods.save_img,
         };
-        // console.log(share_data);
+        console.log(share_data);
     }
     let data = JSON.stringify(share_data);
     try {

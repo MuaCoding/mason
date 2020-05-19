@@ -101,12 +101,15 @@ export default {
     mounted() {
         this.$nextTick(() => {
             //  && window.ios != undefined
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
+            if (!this.$apps.isAndroid()) {
                 let nav = document.querySelector(".van-nav-bar--fixed");
                 let content = document.querySelector(".active-box");
 
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    return;
                 } else {
                     nav.style.top = this.heights + "px";
                     content.style.marginTop = this.heights + "px";

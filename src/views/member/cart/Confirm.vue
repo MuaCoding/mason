@@ -1,11 +1,15 @@
 <template>
     <div style="background: #F7F7F7; min-height: 100%">
-        <header-bar title="确认订单" :border="false" :isIos="iosShow" :back="-1"></header-bar>
-        <van-cell-group>
-            <van-cell to="/member/address?choose=1" icon="location-o" :title="address.title || '添加收货地址'" is-link>
-                <div slot="label">{{ address.detail || "" }}{{ address.info || "" }}</div>
-            </van-cell>
-        </van-cell-group>
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="确认订单" :border="false" :isIos="iosShow" :back="-1" :heights="heights"></header-bar>
+        <div class="address" :data-top="height">
+            <van-cell-group>
+                <van-cell to="/member/address?choose=1" icon="location-o" :title="address.title || '添加收货地址'" is-link>
+                    <div slot="label">{{ address.detail || "" }}{{ address.info || "" }}</div>
+                </van-cell>
+            </van-cell-group>
+        </div>
+
         <div class="mt-2" v-if="need_use_real_message == 1">
             <van-field v-model="xm" name="真实姓名" label="真实姓名" placeholder="请输入真实姓名" />
             <van-field v-model="id_number" name="身份证号码" label="身份证号码" placeholder="请输入身份证号码" />
@@ -37,14 +41,15 @@
                     >
                         <!-- <div slot="num">{{good.num}}</div> -->
                         <div slot="title">
-                            <img
+                            <!-- <img
                                 v-if="item[0].shop.is_self == 1"
                                 src="../../../assets/ziying.png"
                                 height="14"
                                 class="mr-1 align-middle"
                                 alt=""
                                 srcset=""
-                            /><span class="align-middle">{{ good.goods.name }}</span>
+                            /> -->
+                            <span class="align-middle">{{ good.goods.name }}</span>
                         </div>
                         <span slot="price" class="strong"
                             >￥{{ good.sku.activity_is == 1 && good.sku.activity_nums > 0 ? good.sku.activity_price : good.sku.price }}</span
@@ -153,6 +158,7 @@ export default {
         return {
             iosShow: false,
             heights: 0,
+            height: 0,
             ids: "",
             carts: [],
             amount: 0.0,
@@ -330,8 +336,8 @@ export default {
         },
     },
     created() {
+        
         this.ids = this.$route.query.ids;
-        console.log(this.ids);
         if (this.ids) {
             this.$apps.http
                 .get("/goodsCart", {
@@ -360,7 +366,6 @@ export default {
                                 this.remark["shop_" + data[i][0].shop.id] = "";
                             }
                             let addr_id = parseInt(this.$apps.session.get("addr_id"));
-                            console.log(addr_id);
                             this.getAddr(addr_id);
                         }
                     }
@@ -385,21 +390,27 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
+            let content = document.querySelector(".address");
+            if (!this.$apps.isAndroid()) {
                 let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
+
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.iosShow = false;
+                    this.heights = 0;
+                    content.style.paddingTop = 47 + "px";
+                    this.height = 47;
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
-                    // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    this.height = Number(this.heights) + 47;
+                    // content.style.paddingTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {
                 this.heights = 0;
+                this.height = 47;
+                content.style.marginTop = 47 + "px";
                 this.iosShow = false;
             }
         });
@@ -417,6 +428,11 @@ export default {
         formatScorePrice(val, buy_score, total_score, goods_amount) {
             let score1 = parseFloat(buy_score) < parseFloat(total_score) ? parseFloat(buy_score).toFixed(2) : parseFloat(val).toFixed(2);
             return parseFloat(goods_amount) > score1 ? score1 : parseFloat(goods_amount).toFixed(2);
+        },
+    },
+    watch: {
+        height(val) {
+            return val;
         },
     },
 };

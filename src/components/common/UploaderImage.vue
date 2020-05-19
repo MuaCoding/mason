@@ -44,9 +44,10 @@ export default {
                 .catch((err) => {});
         },
         async afterRead(files, detail) {
+            console.log(files);
             let uploadImgFile = await this.canvasDataURL(files.file, files.file.name); // 压缩后的文件
-            const payload = this.dataURLtoFile(uploadImgFile, files.file.name);
-            this.uploadImgFile(payload);
+            // const payload = this.dataURLtoFile(uploadImgFile, files.file.name);
+            this.uploadImgFile(uploadImgFile);
         },
         beforeDelete(file, detail) {
             this.form.imagesArr.splice(detail.index, 1);
@@ -148,8 +149,20 @@ export default {
                             quality = obj.quality;
                         }
                         let base64 = canvas.toDataURL("image/jpeg", quality);
+
+                        let arr = base64.split(",");
+                        let data = window.atob(arr[1]);
+                        let mime = arr[0].match(/:(.*?);/)[1];
+                        let ia = new Uint8Array(data.length);
+                        for (var i = 0; i < data.length; i++) {
+                            ia[i] = data.charCodeAt(i);
+                        }
+                        let blob = new Blob([ia], { type: mime });
+                        let files = new window.File([blob], file.name, { type: file.type });
+                        console.log(file, files);
+
                         // console.log(a);
-                        resolve(base64);
+                        resolve(files);
                         // quality值越小，所绘制出的图像越模糊
                         // canvas.toBlob(
                         //     (file) => {

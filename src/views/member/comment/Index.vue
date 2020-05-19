@@ -1,6 +1,7 @@
 <template>
     <div class="page page-no-radius">
-        <header-bar title="我的评论" :border="true" :back="-1" :isIos="iosShow"></header-bar>
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="我的评论" :border="true" :back="-1" :isIos="iosShow" :heights="heights"></header-bar>
         <comment-list></comment-list>
     </div>
 </template>
@@ -32,20 +33,23 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
-                let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
+            let content = document.querySelector(".list-group");
+
+            if (!this.$apps.isAndroid()) {
+                let head = document.querySelector(".van-nav-bar");
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.iosShow = false;
+                    this.heights = 0;
+                    content.style.paddingTop = 47 + "px";
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
-                    // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    content.style.paddingTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {
+                content.style.paddingTop = 47 + "px";
                 this.heights = 0;
                 this.iosShow = false;
             }

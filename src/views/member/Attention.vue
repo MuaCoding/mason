@@ -1,6 +1,7 @@
 <template>
     <div>
-        <header-bar title="关注中心" :border="false" :back="-1" :isIos="iosShow"></header-bar>
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="关注中心" :border="false" :back="-1" :isIos="iosShow" :heights="heights"></header-bar>
         <van-tabs v-model="active" @change="onChange">
             <van-tab title="商品">
                 <van-list v-model="goods.loading" :finished="goods.finished" finished-text="没有更多了" :immediate-check="false" @load="onLoad">
@@ -156,20 +157,25 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
+            let content = document.querySelector(".van-tabs");
+
+            if (!this.$apps.isAndroid()) {
                 let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
+
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.iosShow = false;
+                    this.heights = 0;
+                    content.style.paddingTop = 47 + "px";
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
                     // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    content.style.paddingTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {
+                content.style.paddingTop = 47 + "px";
                 this.heights = 0;
                 this.iosShow = false;
             }

@@ -1,6 +1,7 @@
 <template>
     <div>
-        <header-bar class="search-search-nav" :border="false" :isIos="iosShow" :back="-1">
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar class="search-search-nav" :border="false" :back="-1" :heights="heights">
             <div slot="nav-title" @click="goto('/search')" class="index-search-nav-title" style="padding: 8px">
                 <div style="border: #f6f6f6 solid 1px; height: 30px; line-height: 30px; border-radius: 15px; background: #f6f6f6">
                     <van-icon class="text-66" name="search"></van-icon> <span class="text-99 fs-12">{{ params.q }}</span>
@@ -122,18 +123,26 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
-                let head = document.querySelector(".van-nav-bar--fixed");
+            let content = document.querySelector(".row-box");
+
+            if (!this.$apps.isAndroid()) {
+                let head = document.querySelector(".van-nav-bar");
+
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
+
                 if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    content.style.paddingTop = 47 + "px";
+                    return;
                 } else {
-                    let content = document.querySelector(".row-box");
                     head.style.top = Number(this.heights) + "px";
-                    content.style.paddingTop = Number(this.heights) + "px";
+                    content.style.paddingTop = Number(this.heights) + Number(head.clientHeight) + "px";
                     this.iosShow = true;
                 }
             } else {
                 this.heights = 0;
+                content.style.paddingTop = 47 + "px";
                 this.iosShow = false;
             }
             console.log(this.iosShow);

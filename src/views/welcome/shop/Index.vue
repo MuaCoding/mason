@@ -1,88 +1,89 @@
 <template>
     <div>
-        <header-bar title="店铺" :border="active != 1" :isIos="iosShow" :back="-1">
-            <!-- <van-icon name="like-o" slot="nav-right"></van-icon> -->
-        </header-bar>
-        <div v-show="active === 0">
-            <van-cell-group :border="false">
-                <van-cell>
-                    <img slot="icon" width="50" height="50" class="mr-2" :src="data.logo" alt="" srcset="" />
-                    <div slot="title">{{ data.name }}</div>
-                    <div slot="label">
-                        <span class="align-middle">综合体验</span>
-                        <van-rate
-                            class="ml-2 align-middle"
-                            size="12"
-                            icon="star"
-                            :color="switchColor"
-                            readonly
-                            void-color="#eee"
-                            void-icon="star"
-                            v-model="data.fraction"
-                        ></van-rate>
-                        <!-- <span class="align-middle ml-2">粉丝·0</span> -->
-                    </div>
-                    <div slot="right-icon" @click="clickFav">
-                        <van-icon :color="isFav == 1 ? switchColor : ''" class="align-middle" :name="isFav == 1 ? 'like' : 'like-o'"></van-icon
-                        ><span class="ml-1 align-middle">关注商家</span>
-                    </div>
-                </van-cell>
-            </van-cell-group>
-            <van-swipe :autoplay="3000" :height="150" :width="clientWidth">
-                <van-swipe-item @click="swipeItemGoTo(item)" v-for="(item, index) in images" :key="index">
-                    <van-image style="width: 100%" lazy-load fit="fill" :src="item.image"></van-image>
-                </van-swipe-item>
-            </van-swipe>
-            <goods-list-4 style="padding-bottom: 50px" :max="2" :filter="{ shop_id: shop_id }"></goods-list-4>
-        </div>
-        <div v-if="active === 1">
-            <van-row>
-                <van-col span="20">
-                    <van-dropdown-menu style="height: 40px">
-                        <van-dropdown-item @change="onChange" v-model="value1" :options="option1" />
-                        <van-dropdown-item @change="onChange" v-model="value2" :options="option2" />
-                    </van-dropdown-menu>
-                </van-col>
-                <van-col
-                    span="4"
-                    class="text-center van-hairline--top van-hairline--bottom van-hairline--left"
-                    style="height: 40px; line-height: 45px"
-                >
-                    <van-icon @click="showFilter = true" name="filter-o"></van-icon>
-                </van-col>
-            </van-row>
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="店铺" :border="active != 1" :isIos="iosShow" :back="-1" :heights="heights"> </header-bar>
+        <div class="wrap">
+            <div v-show="active === 0">
+                <van-cell-group :border="false">
+                    <van-cell>
+                        <img slot="icon" width="50" height="50" class="mr-2" :src="data.logo" alt="" srcset="" />
+                        <div slot="title">{{ data.name }}</div>
+                        <div slot="label">
+                            <span class="align-middle">综合体验</span>
+                            <van-rate
+                                class="ml-2 align-middle"
+                                size="12"
+                                icon="star"
+                                :color="switchColor"
+                                readonly
+                                void-color="#eee"
+                                void-icon="star"
+                                v-model="data.fraction"
+                            ></van-rate>
+                            <!-- <span class="align-middle ml-2">粉丝·0</span> -->
+                        </div>
+                        <div slot="right-icon" @click="clickFav">
+                            <van-icon :color="isFav == 1 ? switchColor : ''" class="align-middle" :name="isFav == 1 ? 'like' : 'like-o'"></van-icon
+                            ><span class="ml-1 align-middle">关注商家</span>
+                        </div>
+                    </van-cell>
+                </van-cell-group>
+                <van-swipe :autoplay="3000" :height="150" :width="clientWidth">
+                    <van-swipe-item @click="swipeItemGoTo(item)" v-for="(item, index) in images" :key="index">
+                        <van-image style="width: 100%" lazy-load fit="fill" :src="item.image"></van-image>
+                    </van-swipe-item>
+                </van-swipe>
+                <goods-list-4 style="padding-bottom: 50px" :max="2" :filter="{ shop_id: shop_id }"></goods-list-4>
+            </div>
+            <div v-show="active === 1">
+                <van-row>
+                    <van-col span="20">
+                        <van-dropdown-menu style="height: 40px">
+                            <van-dropdown-item @change="onChange" v-model="value1" :options="option1" />
+                            <van-dropdown-item @change="onChange" v-model="value2" :options="option2" />
+                        </van-dropdown-menu>
+                    </van-col>
+                    <van-col
+                        span="4"
+                        class="text-center van-hairline--top van-hairline--bottom van-hairline--left"
+                        style="height: 40px; line-height: 45px"
+                    >
+                        <van-icon @click="showFilter = true" name="filter-o"></van-icon>
+                    </van-col>
+                </van-row>
 
-            <goods-list-4 style="padding-bottom: 50px" :filter="params" :firstLoad="true"></goods-list-4>
-        </div>
-        <div v-show="active === 2">
-            <van-tree-select
-                v-show="categorys.length > 0"
-                :items="categorys"
-                :active-id.sync="activeId"
-                :main-active-index.sync="activeId"
-                :height="clientHeight - 96"
-                @click-nav="chooseCategory"
-            >
-                <div class="p-2" slot="content">
-                    <van-grid v-show="activeId === key" v-for="(cate, key) in categorys" :key="key" :column-num="3" :border="false">
-                        <van-grid-item @click="chooseCate(item.id)" class="van-ellipsis" v-for="(item, index) in cate.child" :key="index">
-                            <img width="60" height="60" v-lazy="item.icon" slot="icon" />
-                            <!-- <van-image width="60" height="60" lazy-load slot="icon" :src="item.icon" /> -->
-                            <span class="fs-10 text-66 van-ellipsis" slot="text">{{ item.name }}</span>
-                        </van-grid-item>
-                    </van-grid>
+                <goods-list-4 style="padding-bottom: 50px" :filter="params" :firstLoad="true"></goods-list-4>
+            </div>
+            <div v-show="active === 2">
+                <van-tree-select
+                    v-show="categorys.length > 0"
+                    :items="categorys"
+                    :active-id.sync="activeId"
+                    :main-active-index.sync="activeId"
+                    :height="clientHeight - 96"
+                    @click-nav="chooseCategory"
+                >
+                    <div class="p-2" slot="content">
+                        <van-grid v-show="activeId === key" v-for="(cate, key) in categorys" :key="key" :column-num="3" :border="false">
+                            <van-grid-item @click="chooseCate(item.id)" class="van-ellipsis" v-for="(item, index) in cate.child" :key="index">
+                                <img width="60" height="60" v-lazy="item.icon" slot="icon" />
+                                <!-- <van-image width="60" height="60" lazy-load slot="icon" :src="item.icon" /> -->
+                                <span class="fs-10 text-66 van-ellipsis" slot="text">{{ item.name }}</span>
+                            </van-grid-item>
+                        </van-grid>
+                    </div>
+                </van-tree-select>
+            </div>
+            <div v-show="active === 3">
+                <div class="text-center mt-5 pt-5">
+                    <van-image width="80" height="80" lazy-load round :src="data.logo" />
                 </div>
-            </van-tree-select>
-        </div>
-        <div v-show="active === 3">
-            <div class="text-center mt-5 pt-5">
-                <van-image width="80" height="80" lazy-load round :src="data.logo" />
-            </div>
-            <div class="p-3 mt-5" v-show="data.contect_mobile">
-                <van-button size="large" :url="'tel:' + data.contect_mobile" type="primary" round icon="phone-o">拨打手机</van-button>
-            </div>
-            <div class="p-3" v-show="data.contect_tel">
-                <van-button size="large" :url="'tel:' + data.contect_tel" type="info" round icon="phone-circle-o">拨打电话</van-button>
+                <div class="p-3 mt-5" v-show="data.contect_mobile">
+                    <van-button size="large" :url="'tel:' + data.contect_mobile" type="primary" round icon="phone-o">拨打手机</van-button>
+                </div>
+                <div class="p-3" v-show="data.contect_tel">
+                    <van-button size="large" :url="'tel:' + data.contect_tel" type="info" round icon="phone-circle-o">拨打电话</van-button>
+                </div>
             </div>
         </div>
         <div>
@@ -300,20 +301,23 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
-                let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
+            let content = document.querySelector(".wrap");
+
+            if (!this.$apps.isAndroid()) {
+                let head = document.querySelector(".van-nav-bar");
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    content.style.paddingTop = 47 + "px";
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
-                    // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    content.style.paddingTop = Number(this.heights) + Number(head.offsetHeight) + "px";
                     this.iosShow = true;
                 }
             } else {
+                content.style.paddingTop = 47 + "px";
                 this.heights = 0;
                 this.iosShow = false;
             }

@@ -1,7 +1,8 @@
 <template>
     <div class="bg-f4">
-        <header-bar title="回寄商品" :border="true" :isIos="iosShow" :back="-1"></header-bar>
-        <van-cell-group class="mt-3">
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="回寄商品" :border="true" :isIos="iosShow" :back="-1" :heights="heights"></header-bar>
+        <van-cell-group class="content mt-3">
             <van-notice-bar :scrollable="false" background="#FFEAED" color="#FB5C70">
                 请填写寄回商品信息…
             </van-notice-bar>
@@ -45,21 +46,24 @@ export default {
     created() {},
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
+            let content = document.querySelector(".content");
+            if (!this.$apps.isAndroid()) {
                 let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
+
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    content.style.paddingTop = 47 + "px";
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
-                    // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    content.style.paddingTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {
                 this.heights = 0;
+                content.style.paddingTop = 47 + "px";
                 this.iosShow = false;
             }
         });

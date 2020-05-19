@@ -1,25 +1,26 @@
 <template>
     <div>
-        <div :style="{ height: heights + 'px' }" v-if="iosShow"></div>
-        <header-bar :styles="'zindex-1001;'" :isIos="iosShow" :title="title || '活动主题'" :heights="heights" :back="-1"></header-bar>
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar :title="title || '活动主题'" :back="-1" :heights="heights"></header-bar>
         <div style="background: #F8F8F8;" class="active-box">
             <van-tabs
                 sticky
+                :offset-top="heights"
                 :line-width="29"
                 @change="changeActives"
                 v-model="activeIndex"
                 :border="false"
                 title-active-color="#D53329"
                 title-inactive-color="#9E9E9E"
-                background="#F8F8F8"
-                v-if="actives.length > 0"
+                v-show="actives.length > 0"
+                z-index="1000"
             >
                 <van-tab :title="item.title" v-for="(item, index) in actives" :key="index">
                     <div class="p-5 text-center" v-if="loading">
                         <van-loading />
                     </div>
                     <div v-else>
-                        <div style="padding: 0 15px; margin-top: 8px">
+                        <div style="padding: 0 15px; margin-top: 16px">
                             <!-- <div class="topic2-active-banner mt-1">
                                 <van-image fit="cover" :radius="5" :src="actives[index].master_image" />
                             </div> -->
@@ -141,34 +142,32 @@ export default {
         });
     },
     mounted() {
-        let header = document.querySelector(".header-bar");
-        let nav = document.querySelector(".van-nav-bar--fixed");
-        let content = document.querySelector(".active-box");
+        this.$nextTick(() => {
+            let content = document.querySelector(".active-box");
+            if (!this.$apps.isAndroid()) {
+                let head = document.querySelector(".van-nav-bar");
 
-        this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
-        if (this.heights > 40) {
-            
-        } else {
-            nav.style.top = this.heights + "px";
-            console.log(nav.style.top);
-            this.heights + "px";
-            // header.style.marginBottom = this.heights + "px";
-            this.iosShow = true;
-        }
-        // setTimeout(()=>{
-        // // if (!this.$apps.isAndroidApp()) {
+                let sticky = document.querySelector(".van-sticky");
 
-        //     // } else {
-        //     //     this.heights = 0;
-        //     //     this.iosShow = false;
-        //     // }
-        // },1)
+                this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
 
-        // this.$nextTick(() => {
-        //     // debugger
-        //     //  && window.ios != undefined
-
-        // });
+                if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    content.style.paddingTop = 47 + "px";
+                    return;
+                } else {
+                    head.style.top = this.heights + "px";
+                    content.style.paddingTop = this.heights + 47 + "px";
+                    sticky.style.top = this.heights + "px";
+                    this.iosShow = true;
+                }
+            } else {
+                content.style.paddingTop = 47 + "px";
+                this.heights = 0;
+                this.iosShow = false;
+            }
+        });
     },
     filters: {
         imageView2(value, w) {
@@ -178,11 +177,28 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .topic1-goods-list .van-tabs__wrap {
     height: auto !important;
 }
 .topic1-goods-list .van-tab {
     line-height: normal;
+}
+
+.active-box {
+    /deep/.van-sticky {
+        .van-tabs__wrap {
+            .van-tabs__nav {
+                background: #f8f8f8;
+            }
+        }
+    }
+    /deep/ .van-sticky--fixed {
+        .van-tabs__wrap {
+            .van-tabs__nav {
+                background: #ffffff;
+            }
+        }
+    }
 }
 </style>

@@ -9,8 +9,10 @@
             @click-left="onBack"
             v-show="active == 0 || active == 1"
             :border="true"
+            :heights="heights"
+            :data-top="heights"
         >
-            <div slot="title" @click="gotoSearch" class="index-search-nav-title">
+            <div slot="title" @click="gotoSearch" class="index-search-nav-title" :data-top="heights">
                 <div style="border: #f6f6f6 solid 1px; height: 30px; line-height: 30px; border-radius: 15px; background: #f6f6f6;">
                     <van-icon name="search" class="align-middle" color="#999999"></van-icon>
                     <span class="text-99 fs-12">请输入你想要搜索的关键词</span>
@@ -19,7 +21,7 @@
             <div slot="right"></div>
         </van-nav-bar>
 
-        <van-nav-bar v-show="active == 2" class="index-search-nav cart-nav" :title="title" :border="true" :fixed="true">
+        <van-nav-bar v-show="active == 2" class="index-search-nav cart-nav" :heights="heights" :title="title" :border="true" :fixed="true">
             <van-icon slot="left" @click="onBack" name="arrow-left"></van-icon>
             <van-icon slot="right" @click="editCart" :name="editCartIcon"></van-icon>
         </van-nav-bar>
@@ -104,7 +106,17 @@
                     </div>
                 </div>
             </template>
-            <goods-list-4 :max="5" :filter="{ order: 'rank_asc,sale_nums_desc,id_desc' }" style="padding-bottom: 40px"></goods-list-4>
+            <ul class="goodsTab">
+                <li @click="checkItem(1)" :class="{ activeItem: activeItem == 1 }">推荐</li>
+                <li @click="checkItem(2)" :class="{ activeItem: activeItem == 2 }">直播</li>
+            </ul>
+            <goods-list-4
+                v-show="activeItem == 1"
+                :max="5"
+                :filter="{ order: 'rank_asc,sale_nums_desc,id_desc' }"
+                style="padding-bottom: 40px"
+            ></goods-list-4>
+            <live-Streaming-List v-show="activeItem == 2" />
         </div>
         <!-- 类目 -->
         <div class="tab-1" style="padding-top: 47px" v-show="active === 1">
@@ -241,7 +253,7 @@
             <!-- </van-checkbox-group> -->
         </div>
         <!-- 用户中心 -->
-        <div class="tab-3 mb-5 pb-3 bg-f6" v-if="active === 3">
+        <div class="tab-3 mb-5 pb-3 bg-f6" v-show="active === 3">
             <section class="member-header special">
                 <van-nav-bar class="index-search-nav" :border="false" :fixed="false">
                     <van-icon slot="left" @click="onBack" name="arrow-left"></van-icon>
@@ -290,7 +302,7 @@
                             <span class="fs-12 text-secondary-dark">待收货</span>
                         </van-grid-item>
                         <van-grid-item @click="goto('order', 4)">
-                            <i class="badge" v-show="orderStatistics.order['30'] > 0">{{ outOfNum(orderStatistics.order["30"], 99) }}</i>
+                            <!-- <i class="badge" v-show="orderStatistics.order['30'] > 0">{{ outOfNum(orderStatistics.order["30"], 99) }}</i> -->
                             <i class="icon icon-done"></i>
                             <span class="fs-12 text-secondary-dark">已完成</span>
                         </van-grid-item>
@@ -411,6 +423,7 @@ import {
     Image,
 } from "vant";
 import GoodsList4 from "../../components/GoodsList2";
+import liveStreamingList from "../../components/liveStreamingList";
 import CommonNoData from "../../components/NoData";
 import CommonLoading from "../../components/Loading";
 import ScrollHorizontally from "../../components/common/ScrollHorizontally";
@@ -445,11 +458,13 @@ export default {
         CommonNoData,
         GoodsList4,
         ScrollHorizontally,
+        liveStreamingList,
     },
     data() {
         return {
             iosShow: false,
             heights: 0,
+            activeItem: 1,
             active: 0,
             title: "MASON",
             cart_checked: false,
@@ -499,6 +514,9 @@ export default {
         };
     },
     methods: {
+        checkItem(key) {
+            this.activeItem = key;
+        },
         onBack() {
             if (Detect() == "android") {
                 try {
@@ -937,31 +955,6 @@ export default {
         if (this.actives.length <= 0) {
             this.getActives();
         }
-
-        this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
-                let head = document.querySelector(".index-search-nav");
-                let nav = document.querySelector(".van-nav-bar--fixed");
-                let cartNav = document.querySelector(".cart-nav");
-
-                this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
-                if (this.heights > 40) {
-                } else {
-                    let tab0 = document.querySelector(".tab-0"),
-                        tab1 = document.querySelector(".tab-1"),
-                        tab2 = document.querySelector(".tab-2");
-                    nav.style.top = this.heights + "px";
-                    cartNav.style.top = this.heights + "px";
-                    tab0.style.paddingTop = Number(this.heights) + Number(head.offsetHeight) + "px";
-                    tab1.style.paddingTop = Number(this.heights) + Number(head.offsetHeight) + "px";
-                    tab2.style.paddingTop = Number(this.heights) + "px";
-                    this.iosShow = true;
-                }
-            } else {
-                this.heights = 0;
-                this.iosShow = false;
-            }
-        });
     },
     watch: {
         selectedCartShops(newValue, oldValue) {
@@ -1023,6 +1016,36 @@ export default {
             //  获取广告
             this.getAd();
         }
+
+        this.$nextTick(() => {
+            if (!this.$apps.isAndroid()) {
+                let head = document.querySelector(".index-search-nav");
+                let nav = document.querySelector(".van-nav-bar--fixed");
+                let cartNav = document.querySelector(".cart-nav");
+
+                this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
+                if (this.heights > 40) {
+                    this.iosShow = false;
+                    this.heights = 0;
+                    return;
+                } else {
+                    let tab0 = document.querySelector(".tab-0"),
+                        tab1 = document.querySelector(".tab-1"),
+                        tab2 = document.querySelector(".tab-2"),
+                        tab3 = document.querySelector(".member-header");
+                    nav.style.top = this.heights + "px";
+                    cartNav.style.top = this.heights + "px";
+                    tab0.style.paddingTop = Number(this.heights) + 47 + "px";
+                    tab1.style.paddingTop = Number(this.heights) + 47 + "px";
+                    tab2.style.paddingTop = Number(this.heights) + "px";
+                    tab3.style.paddingTop = Number(this.heights) + "px";
+                    this.iosShow = true;
+                }
+            } else {
+                this.heights = 0;
+                this.iosShow = false;
+            }
+        });
     },
     deactivated() {
         this.setShopUnSelected();
@@ -1046,6 +1069,38 @@ export default {
     border-radius: 16px;
     transform: translate(50%, -50%);
     transform-origin: 100%;
+}
+.tab-0 {
+    .goodsTab {
+        width: 100%;
+        height: 40px;
+        padding: 0 16px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        li {
+            width: 50%;
+            text-align: center;
+            color: #999999;
+            font-size: 20px;
+        }
+        .activeItem {
+            color: #d53329;
+            position: relative;
+            &::before {
+                content: "";
+                width: 14px;
+                height: 2px;
+                border-radius: 1px;
+                background: #d53329;
+                position: absolute;
+                left: 50%;
+                bottom: 9px;
+                transform: translate(-50%, 0);
+            }
+        }
+    }
 }
 .member-header {
     position: relative;

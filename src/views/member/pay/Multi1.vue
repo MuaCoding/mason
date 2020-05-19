@@ -1,8 +1,9 @@
 <template>
     <div>
-        <header-bar title="订单支付" :isIos="iosShow" :back="-1"></header-bar>
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="订单支付" :isIos="iosShow" :back="-1" :heights="heights"></header-bar>
 
-        <div class="py-5 text-center text-danger fs-14">
+        <div class="py-5 text-center address text-danger fs-14" :data-top="height">
             ￥<span class="fs-24">{{ data.prices[0] || "0" }}</span
             >.{{ data.prices[1] || "00" }}
         </div>
@@ -81,6 +82,7 @@ export default {
         return {
             iosShow: false,
             heights: 0,
+            height: 67,
             payBtnDisabled: true,
             payBtnLoading: true,
             payFormShow: false,
@@ -355,17 +357,19 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
+            if (!this.$apps.isAndroid()) {
                 let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
+                let content = document.querySelector(".text-center");
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    content.style.marginTop = 47 + "px";
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
-                    // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    this.height = content.style.marginTop = Number(this.heights) + 47;
+                    content.style.marginTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {
@@ -373,6 +377,11 @@ export default {
                 this.iosShow = false;
             }
         });
+    },
+    watch: {
+        height(val) {
+            return val;
+        },
     },
 };
 </script>

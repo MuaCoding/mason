@@ -274,12 +274,22 @@ export default {
         },
         // 再次购买
         againHandle(item) {
-            let result = [];
-            item.goods.forEach((e) => {
-                result.push(e.id);
-            });
-            console.log(item);
-            this.$router.push("/confirm?ids=" + result.toString());
+            this.$store.dispatch("SET_LOADING", 1);
+            this.$apps.http
+                .post("/Order/buy_again", {
+                    id: item.id,
+                })
+                .then((result) => {
+                    // this.$toast.clear;
+                    if (result.code == 1) {
+                        this.$router.push("/confirm?ids=" + result.data.cart_ids.toString());
+                    } else {
+                        this.$toast(result.msg);
+                    }
+                })
+                .catch((err) => {
+                    this.$toast.fail("网络错误");
+                });
         },
     },
 };

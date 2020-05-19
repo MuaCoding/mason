@@ -18,14 +18,15 @@
                         </div>
                         <div class="goods-item-info">
                             <h4 class="fs-12 text-66 goods-item-title m-0">
-                                <img
+                                <!-- <img
                                     v-if="item.is_self === 1"
                                     src="../assets/ziying.png"
                                     height="14"
                                     class="mr-1 align-middle"
                                     alt=""
                                     srcset=""
-                                /><span class="align-middle">{{ item.name }}</span>
+                                /> -->
+                                <span class="align-middle">{{ item.name }}</span>
                             </h4>
                             <div class="goods-item-price fs-14 text-danger strong mt-1">
                                 <template v-if="item.sku.activity_is == 1 && item.sku.activity_nums > 0">

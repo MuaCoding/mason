@@ -1,7 +1,8 @@
 <template>
     <div class="page page-no-radius">
-        <header-bar title="发布评论" :border="true" :isIos="iosShow" :back="-1"></header-bar>
-        <van-cell-group class="prod-list    ">
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="发布评论" :border="true" :isIos="iosShow" :back="-1" :heights="heights"></header-bar>
+        <van-cell-group class="prod-list">
             <div class="prod-item px-3">
                 <van-image radius="6px" width="4.25rem" height="4.25rem" :src="list.goods_master_image || '/'" />
                 <div class="prod-content">
@@ -106,21 +107,24 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
-                let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
+            let content = document.querySelector(".prod-list");
+            if (!this.$apps.isAndroid()) {
+                let head = document.querySelector(".van-nav-bar");
+
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.iosShow = false;
+                    this.heights = 0;
+                    content.style.marginTop = 47 + "px";
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
-                    // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    content.style.marginTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {
                 this.heights = 0;
+                content.style.marginTop = 47 + "px";
                 this.iosShow = false;
             }
         });

@@ -10,29 +10,6 @@
         >
             <!-- ref="goodsBoxRefs"  style="padding: 10px 0" -->
             <div class="goods-list-container">
-                <!-- <waterfall :col="2" @loadmore="loadmore" :data="list" @finish="finisheds" :gutterWidth="0" :width="(clientW - 10) / 2" @scroll="goodsScroll" :isTransition="false" :lazyDistance="1">
-                    <template>
-                        <router-link style="margin-left: 10px" :to="'/goods/' + item.id" class="goods-item" :key="index" v-for="(item, index) in list">
-                            <div class="goods-item-images">
-                                <van-image class="goods-van-images" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" width="100%" fit="contain" 
-                        lazy-load :src="item.master_image"></van-image>
-                            </div>
-                            <div class="goods-item-info">
-                                <h4 class="fs-12 text-66 goods-item-title m-0"><img  src="../assets/ziying.png" height="14" class="mr-1 align-middle" alt="" srcset=""><span class="align-middle">{{ item.name }}</span></h4>
-                                <div class="goods-item-price fs-14 text-danger strong mt-1">
-                                    <span class="fs-12" style="font-size: 10px">￥</span>{{ item.prices[0] }}<span class="fs-12" style="font-size: 10px">.{{item.prices[1]}}</span>
-                                </div>
-                                <div class="goods-item-price py-1 fs-10" v-if="item.buy_score > 0">
-                                    <span class="fs-10 buy-score-span">购物分抵￥{{item.buy_score}}</span>
-                                </div>
-                                <div class="goods-item-price fs-10 text-danger text-99">
-                                    <span class="float-right align-middle" style="margin-right: -15px">{{item.sale_nums}}人付款</span>
-                                    <img height="10" class="align-middle mr-1" src="../assets/meidou.png" /><span class="align-middle">赠{{item.award_multiple|formatScore(item.min_price)}}</span>
-                                </div>
-                            </div>
-                        </router-link>
-                    </template>
-                </waterfall> -->
                 <router-link :to="'/goods/' + item.id" class="goods-item" :key="index" v-for="(item, index) in list">
                     <div class="goods-item-images" style="">
                         <van-image
@@ -48,9 +25,8 @@
                     </div>
                     <div class="goods-item-info">
                         <h4 class="fs-12 text-66 goods-item-title m-0">
-                            <img src="../assets/ziying.png" height="14" class="mr-1 align-middle" alt="" srcset="" /><span class="align-middle">{{
-                                item.name
-                            }}</span>
+                            <!-- <img src="../assets/ziying.png" height="14" class="mr-1 align-middle" alt="" srcset="" /> -->
+                            <span class="align-middle">{{ item.name }}</span>
                         </h4>
                         <div class="goods-item-price fs-14 text-danger strong mt-1">
                             <span class="fs-12" style="font-size: 10px">￥</span>{{ item.prices[0]
@@ -78,25 +54,25 @@ export default {
     components: {
         List,
         Cell,
-        Image
+        Image,
     },
     props: {
         url: {
             type: String,
-            default: "/search/goods"
+            default: "/search/goods",
         },
         max: {
             type: Number,
-            default: 0
+            default: 0,
         },
         filter: {
             type: Object,
-            default: {}
+            default: {},
         },
         immediate: {
             type: Boolean,
-            default: true
-        }
+            default: true,
+        },
     },
     data() {
         return {
@@ -110,7 +86,7 @@ export default {
             fallFinished: false,
             refsHeight: 0,
             clientW: 0,
-            totalPage: 0
+            totalPage: 0,
         };
     },
     methods: {
@@ -132,12 +108,12 @@ export default {
                     shop_id: this.filter.shop_id ? this.filter.shop_id : "",
                     cid: this.filter.cid ? this.filter.cid : "",
                     scid: this.filter.scid ? this.filter.scid : "",
-                    rank: this.filter.rank ? this.filter.rank : ""
+                    rank: this.filter.rank ? this.filter.rank : "",
                 };
                 this.isRequest = true;
                 this.$apps.http
                     .get(this.url, params)
-                    .then(result => {
+                    .then((result) => {
                         if (result.code === 1) {
                             let goods = result.data.list;
 
@@ -172,7 +148,7 @@ export default {
                         }
                         this.isRequest = false;
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         console.log(err);
                     });
             } catch (err) {
@@ -187,7 +163,7 @@ export default {
         },
         finisheds() {
             this.refsHeight = this.$refs.goodsBoxRefs.clientHeight;
-        }
+        },
     },
     created() {
         this.clientW = document.body.clientWidth;
@@ -199,8 +175,8 @@ export default {
             handler(newValue, oldValue) {
                 this.page = 1;
                 this.getData(false);
-            }
-        }
+            },
+        },
     },
     filters: {
         formatScore: function(value, amount) {
@@ -208,9 +184,9 @@ export default {
         },
         formatPrice(value) {
             return value.toFixed(2);
-        }
+        },
     },
-    mounted() {}
+    mounted() {},
 };
 </script>
 

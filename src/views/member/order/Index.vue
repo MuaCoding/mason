@@ -1,7 +1,7 @@
 <template>
     <div class="page">
-        <!-- <div style="background-color:#fff" :style="{ height: heights + 'px' }" v-if="iosShow" class="iosStyles"></div> -->
-        <header-bar title="我的订单" :border="true" :isIos="iosShow" :back="1"></header-bar>
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="我的订单" :border="true" :isIos="iosShow" :back="1" :heights="heights"></header-bar>
         <van-tabs v-model="active" @change="onChange" :border="false">
             <van-tab title="全部">
                 <van-list v-model="orders.loading" :finished="orders.finished" finished-text="没有更多了" @load="onLoad">
@@ -204,19 +204,24 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
-                let head = document.querySelector(".van-nav-bar--fixed");
+            let content = document.querySelector(".van-tabs");
+            if (!this.$apps.isAndroid()) {
+                let head = document.querySelector(".van-nav-bar");
+
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    content.style.paddingTop = 47 + "px";
+                    return;
                 } else {
-                    let tab = document.querySelector(".van-tabs");
-                    // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    tab.style.paddingTop = Number(this.heights) + "px";
+                    content.style.paddingTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {
                 this.heights = 0;
+                content.style.paddingTop = 47 + "px";
                 this.iosShow = false;
             }
         });

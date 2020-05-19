@@ -1,8 +1,9 @@
 <template>
     <div>
-        <header-bar title="付款成功" :border="true" :isIos="iosShow" :back="-1"></header-bar>
+        <div :style="{ height: heights + 'px' }" v-if="iosShow" class="headIos"></div>
+        <header-bar title="付款成功" :border="true" :isIos="iosShow" :back="2" :heights="heights"></header-bar>
 
-        <div class="p-5 text-center">
+        <div class="p-5 text-center address" :data-top="height">
             <van-icon class="text-success" size="4rem" name="passed" />
             <div class="mt-2 text-66 fs-14">
                 付款成功
@@ -24,6 +25,7 @@ export default {
         return {
             iosShow: false,
             heights: 0,
+            height: 67,
         };
     },
     components: {
@@ -46,17 +48,19 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            if (!this.$apps.isAndroidApp() && window.ios != undefined) {
+            if (!this.$apps.isAndroid()) {
                 let head = document.querySelector(".van-nav-bar--fixed");
-                let headerBar = document.querySelector(".header-bar");
+                let content = document.querySelector(".address");
                 this.heights = window.ios != undefined ? window.ios.statusHeight() : 20;
                 if (this.heights > 40) {
+                    this.heights = 0;
+                    this.iosShow = false;
+                    content.style.marginTop = 47 + "px";
                     return;
                 } else {
-                    let tab = document.querySelector(".wrapper");
-                    // let ordeftabs = document.querySelector(".index-tab");
                     head.style.top = Number(this.heights) + "px";
-                    headerBar.style.marginBottom = Number(this.heights) + "px";
+                    this.height = Number(this.heights) + 47;
+                    content.style.marginTop = Number(this.heights) + 47 + "px";
                     this.iosShow = true;
                 }
             } else {
