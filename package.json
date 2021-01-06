@@ -10,7 +10,7 @@
     "build:sendbox": "vue-cli-service build --mode sendbox --outpot sendbox/"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "better-scroll": "^1.15.2",
     "callapp-lib": "^2.1.8",
     "canvas": "^2.6.1",
